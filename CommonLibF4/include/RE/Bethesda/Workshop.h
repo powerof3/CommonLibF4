@@ -175,16 +175,16 @@ namespace RE
 			F4_HEAP_REDEFINE_NEW(WorkshopMenuNode);
 
 			// members
-			BGSKeyword*                                  filterKeyword{ nullptr };                    // 00
-			WorkshopMenuNode*                            parent{ nullptr };                           // 08
-			BSTArray<msvc::unique_ptr<WorkshopMenuNode>> children;                                    // 10
-			BGSConstructibleObject*                      recipe{ nullptr };                           // 28
-			BGSConstructibleObject*                      sourceFormListRecipe{ nullptr };             // 30
-			TESForm*                                     form{ nullptr };                             // 38
-			std::uint32_t                                uniqueID{ static_cast<std::uint32_t>(-1) };  // 40
-			std::uint16_t                                row{ 0 };                                    // 44
-			std::uint16_t                                column{ 0 };                                 // 46
-			bool                                         selected{ false };                           // 48
+			BGSKeyword*                                 filterKeyword{ nullptr };                    // 00
+			WorkshopMenuNode*                           parent{ nullptr };                           // 08
+			BSTArray<std::unique_ptr<WorkshopMenuNode>> children;                                    // 10
+			BGSConstructibleObject*                     recipe{ nullptr };                           // 28
+			BGSConstructibleObject*                     sourceFormListRecipe{ nullptr };             // 30
+			TESForm*                                    form{ nullptr };                             // 38
+			std::uint32_t                               uniqueID{ static_cast<std::uint32_t>(-1) };  // 40
+			std::uint16_t                               row{ 0 };                                    // 44
+			std::uint16_t                               column{ 0 };                                 // 46
+			bool                                        selected{ false };                           // 48
 		};
 		static_assert(sizeof(WorkshopMenuNode) == 0x50);
 

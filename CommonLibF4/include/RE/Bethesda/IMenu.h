@@ -462,7 +462,7 @@ namespace RE
 		static constexpr auto RTTI{ RTTI::UsesBSGFXFunctionHandler };
 
 		// members
-		BSTArray<msvc::unique_ptr<BSGFxFunctionBase>> functions;  // 00
+		BSTArray<std::unique_ptr<BSGFxFunctionBase>> functions;  // 00
 	};
 	static_assert(sizeof(UsesBSGFXFunctionHandler) == 0x18);
 
@@ -630,14 +630,14 @@ namespace RE
 
 		void CreateAndSetFiltersToColor(const NiColor& a_color, float a_brightness)
 		{
-			using func_t = void            (BSGFxShaderFXTarget::*)(const NiColor&, float);
+			using func_t = void (BSGFxShaderFXTarget::*)(const NiColor&, float);
 			static REL::Relocation<func_t> func{ REL::ID(2287028) };
 			func(this, a_color, a_brightness);
 		}
 
 		void CreateAndSetFiltersToColor(std::uint8_t a_r, std::uint8_t a_g, std::uint8_t a_b, float a_brightness)
 		{
-			using func_t = void            (BSGFxShaderFXTarget::*)(std::uint8_t, std::uint8_t, std::uint8_t, float);
+			using func_t = void (BSGFxShaderFXTarget::*)(std::uint8_t, std::uint8_t, std::uint8_t, float);
 			static REL::Relocation<func_t> func{ REL::ID(783104) };
 			func(this, a_r, a_g, a_b, a_brightness);
 		}
@@ -785,13 +785,13 @@ namespace RE
 		}
 
 		// members
-		BSTArray<BSGFxShaderFXTarget*>        shaderFXObjects;              // 70
-		msvc::unique_ptr<BSGFxShaderFXTarget> filterHolder;                 // 88
-		msvc::unique_ptr<ButtonHintBar>       buttonHintBar;                // 90
-		BSTAlignedArray<UIShaderFXInfo>       cachedColorFXInfos;           // 98
-		BSTAlignedArray<UIShaderFXInfo>       cachedBackgroundFXInfos;      // B0
-		BSReadWriteLock                       cachedQuadsLock;              // C8
-		BSTOptional<HUDModeType>              menuHUDMode{ std::nullopt };  // D0
+		BSTArray<BSGFxShaderFXTarget*>       shaderFXObjects;              // 70
+		std::unique_ptr<BSGFxShaderFXTarget> filterHolder;                 // 88
+		std::unique_ptr<ButtonHintBar>       buttonHintBar;                // 90
+		BSTAlignedArray<UIShaderFXInfo>      cachedColorFXInfos;           // 98
+		BSTAlignedArray<UIShaderFXInfo>      cachedBackgroundFXInfos;      // B0
+		BSReadWriteLock                      cachedQuadsLock;              // C8
+		BSTOptional<HUDModeType>             menuHUDMode{ std::nullopt };  // D0
 	};
 	static_assert(sizeof(GameMenuBase) == 0xE0);
 
@@ -812,45 +812,45 @@ namespace RE
 		virtual void SetMenuColor();                        // 18
 
 		// members
-		msvc::unique_ptr<BSGFxShaderFXTarget> mainPanel;                      // 0E0
-		msvc::unique_ptr<BSGFxShaderFXTarget> versionText;                    // 0E8
-		msvc::unique_ptr<BSGFxShaderFXTarget> mainPanelBackground;            // 0F0
-		msvc::unique_ptr<BSGFxShaderFXTarget> loadPanelBackground;            // 0F8
-		msvc::unique_ptr<BSGFxShaderFXTarget> loadPanelBrackets;              // 100
-		msvc::unique_ptr<BSGFxShaderFXTarget> loadPanelList;                  // 108
-		msvc::unique_ptr<BSGFxShaderFXTarget> loadPanelPlayerInfo;            // 110
-		msvc::unique_ptr<BSGFxShaderFXTarget> confirmText;                    // 118
-		msvc::unique_ptr<BSGFxShaderFXTarget> levelText;                      // 120
-		msvc::unique_ptr<BSGFxShaderFXTarget> playtimeText;                   // 128
-		msvc::unique_ptr<BSGFxShaderFXTarget> locationText;                   // 130
-		msvc::unique_ptr<BSGFxShaderFXTarget> levelMeter;                     // 138
-		msvc::unique_ptr<BSGFxShaderFXTarget> modsLoadedText;                 // 140
-		msvc::unique_ptr<BSGFxShaderFXTarget> settingsCategoryList;           // 148
-		msvc::unique_ptr<BSGFxShaderFXTarget> settingsList;                   // 150
-		msvc::unique_ptr<BSGFxShaderFXTarget> DLCList;                        // 158
-		msvc::unique_ptr<BSGFxShaderFXTarget> loadingIcon;                    // 160
-		msvc::unique_ptr<BSGFxShaderFXTarget> colorReference;                 // 168
-		msvc::unique_ptr<BSGFxShaderFXTarget> splashScreenText;               // 170
-		msvc::unique_ptr<BSGFxShaderFXTarget> controlsPanel;                  // 178
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpPanelBackground;            // 180
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpListBackground;             // 188
-		msvc::unique_ptr<BSGFxShaderFXTarget> gamerTagPanel;                  // 190
-		msvc::unique_ptr<BSGFxShaderFXTarget> gamerTagText;                   // 198
-		msvc::unique_ptr<BSGFxShaderFXTarget> gamerTagIcon;                   // 1A0
-		msvc::unique_ptr<BSGFxShaderFXTarget> bethesdaLogo;                   // 1A8
-		msvc::unique_ptr<BSGFxShaderFXTarget> characterSelectList;            // 1B0
-		msvc::unique_ptr<BSGFxShaderFXTarget> remapPrompt;                    // 1B8
-		msvc::unique_ptr<BSGFxShaderFXTarget> settingGuideText;               // 1C0
-		msvc::unique_ptr<BSGFxShaderFXTarget> blackBackground;                // 1C8
-		msvc::unique_ptr<BSGFxShaderFXTarget> modManager;                     // 1D0
-		msvc::unique_ptr<BSGFxShaderFXTarget> DLCImageSizer;                  // 1D8
-		msvc::unique_ptr<BSGFxShaderFXTarget> DLCPanelBrackets;               // 1E0
-		msvc::unique_ptr<BSGFxShaderFXTarget> loginObj;                       // 1E8
-		msvc::unique_ptr<BSGFxShaderFXTarget> motD;                           // 1F0
-		BSTOptional<DIFFICULTY_LEVEL>         currentDisplayDifficultyLevel;  // 1F8
-		Scaleform::GFx::Value                 saveLoadPanelObj;               // 218
-		bool                                  gameDataReady;                  // 220
-		bool                                  controlsChanged;                // 221
+		std::unique_ptr<BSGFxShaderFXTarget> mainPanel;                      // 0E0
+		std::unique_ptr<BSGFxShaderFXTarget> versionText;                    // 0E8
+		std::unique_ptr<BSGFxShaderFXTarget> mainPanelBackground;            // 0F0
+		std::unique_ptr<BSGFxShaderFXTarget> loadPanelBackground;            // 0F8
+		std::unique_ptr<BSGFxShaderFXTarget> loadPanelBrackets;              // 100
+		std::unique_ptr<BSGFxShaderFXTarget> loadPanelList;                  // 108
+		std::unique_ptr<BSGFxShaderFXTarget> loadPanelPlayerInfo;            // 110
+		std::unique_ptr<BSGFxShaderFXTarget> confirmText;                    // 118
+		std::unique_ptr<BSGFxShaderFXTarget> levelText;                      // 120
+		std::unique_ptr<BSGFxShaderFXTarget> playtimeText;                   // 128
+		std::unique_ptr<BSGFxShaderFXTarget> locationText;                   // 130
+		std::unique_ptr<BSGFxShaderFXTarget> levelMeter;                     // 138
+		std::unique_ptr<BSGFxShaderFXTarget> modsLoadedText;                 // 140
+		std::unique_ptr<BSGFxShaderFXTarget> settingsCategoryList;           // 148
+		std::unique_ptr<BSGFxShaderFXTarget> settingsList;                   // 150
+		std::unique_ptr<BSGFxShaderFXTarget> DLCList;                        // 158
+		std::unique_ptr<BSGFxShaderFXTarget> loadingIcon;                    // 160
+		std::unique_ptr<BSGFxShaderFXTarget> colorReference;                 // 168
+		std::unique_ptr<BSGFxShaderFXTarget> splashScreenText;               // 170
+		std::unique_ptr<BSGFxShaderFXTarget> controlsPanel;                  // 178
+		std::unique_ptr<BSGFxShaderFXTarget> helpPanelBackground;            // 180
+		std::unique_ptr<BSGFxShaderFXTarget> helpListBackground;             // 188
+		std::unique_ptr<BSGFxShaderFXTarget> gamerTagPanel;                  // 190
+		std::unique_ptr<BSGFxShaderFXTarget> gamerTagText;                   // 198
+		std::unique_ptr<BSGFxShaderFXTarget> gamerTagIcon;                   // 1A0
+		std::unique_ptr<BSGFxShaderFXTarget> bethesdaLogo;                   // 1A8
+		std::unique_ptr<BSGFxShaderFXTarget> characterSelectList;            // 1B0
+		std::unique_ptr<BSGFxShaderFXTarget> remapPrompt;                    // 1B8
+		std::unique_ptr<BSGFxShaderFXTarget> settingGuideText;               // 1C0
+		std::unique_ptr<BSGFxShaderFXTarget> blackBackground;                // 1C8
+		std::unique_ptr<BSGFxShaderFXTarget> modManager;                     // 1D0
+		std::unique_ptr<BSGFxShaderFXTarget> DLCImageSizer;                  // 1D8
+		std::unique_ptr<BSGFxShaderFXTarget> DLCPanelBrackets;               // 1E0
+		std::unique_ptr<BSGFxShaderFXTarget> loginObj;                       // 1E8
+		std::unique_ptr<BSGFxShaderFXTarget> motD;                           // 1F0
+		BSTOptional<DIFFICULTY_LEVEL>        currentDisplayDifficultyLevel;  // 1F8
+		Scaleform::GFx::Value                saveLoadPanelObj;               // 218
+		bool                                 gameDataReady;                  // 220
+		bool                                 controlsChanged;                // 221
 	};
 	static_assert(sizeof(StartMenuBase) == 0x228);
 
@@ -939,9 +939,9 @@ namespace RE
 		};
 
 		// members
-		BSTSmallArray<msvc::unique_ptr<HUDComponentBase>, 32> hudObjects;        // 0F0
-		BSTArray<HUDModeType>                                 hudModes;          // 200
-		REX::EnumSet<ShowMenuState, std::uint32_t>            hudShowMenuState;  // 218
+		BSTSmallArray<std::unique_ptr<HUDComponentBase>, 32> hudObjects;        // 0F0
+		BSTArray<HUDModeType>                                hudModes;          // 200
+		REX::EnumSet<ShowMenuState, std::uint32_t>           hudShowMenuState;  // 218
 	};
 	static_assert(sizeof(HUDMenu) == 0x220);
 
@@ -1091,45 +1091,45 @@ namespace RE
 		{
 		public:
 			// members
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground1;            // 0B0
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground2;            // 0B8
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground3;            // 0C0
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground4;            // 0C8
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground5;            // 0D0
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground6;            // 0D8
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground7;            // 0E0
-			msvc::unique_ptr<BSGFxShaderFXTarget> happyBackground8;            // 0E8
-			msvc::unique_ptr<BSGFxShaderFXTarget> buttonBackground;            // 0F0
-			msvc::unique_ptr<BSGFxShaderFXTarget> iconCardBackground;          // 0F8
-			msvc::unique_ptr<BSGFxShaderFXTarget> requirementsListBackground;  // 100
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessPeopleBase;         // 108
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessFoodBase;           // 110
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessWaterBase;          // 118
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessPowerBase;          // 120
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessSafetyBase;         // 128
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessBedsBase;           // 130
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessHappyValue;         // 138
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessHappyLabel;         // 140
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessHappyIcon;          // 148
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessHappyArrow;         // 150
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessSizeBase;           // 158
-			msvc::unique_ptr<BSGFxShaderFXTarget> happinessBarBrackets;        // 160
-			msvc::unique_ptr<BSGFxShaderFXTarget> requirementsBase;            // 168
-			msvc::unique_ptr<BSGFxShaderFXTarget> itemName;                    // 170
-			msvc::unique_ptr<BSGFxShaderFXTarget> selectionBracket;            // 178
-			msvc::unique_ptr<BSGFxShaderFXTarget> itemCounts;                  // 180
-			msvc::unique_ptr<BSGFxShaderFXTarget> newRecipeIcon;               // 188
-			msvc::unique_ptr<BSGFxShaderFXTarget> iconCardBracketsAndText;     // 190
-			msvc::unique_ptr<BSGFxShaderFXTarget> producesIcons;               // 198
-			msvc::unique_ptr<BSGFxShaderFXTarget> requiresIcon1;               // 1A0
-			msvc::unique_ptr<BSGFxShaderFXTarget> requiresIcon2;               // 1A8
-			msvc::unique_ptr<BSGFxShaderFXTarget> assignmentIcon;              // 1B0
-			msvc::unique_ptr<BSGFxShaderFXTarget> rowBrackets;                 // 1B8
-			msvc::unique_ptr<BSGFxShaderFXTarget> displayPath;                 // 1C0
-			msvc::unique_ptr<BSGFxShaderFXTarget> perkPanel1;                  // 1C8
-			msvc::unique_ptr<BSGFxShaderFXTarget> perkPanel2;                  // 1D0
-			msvc::unique_ptr<BSGFxShaderFXTarget> descriptionBase;             // 1D8
-			msvc::unique_ptr<BSGFxShaderFXTarget> iconBackground;              // 1E0
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground1;            // 0B0
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground2;            // 0B8
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground3;            // 0C0
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground4;            // 0C8
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground5;            // 0D0
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground6;            // 0D8
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground7;            // 0E0
+			std::unique_ptr<BSGFxShaderFXTarget> happyBackground8;            // 0E8
+			std::unique_ptr<BSGFxShaderFXTarget> buttonBackground;            // 0F0
+			std::unique_ptr<BSGFxShaderFXTarget> iconCardBackground;          // 0F8
+			std::unique_ptr<BSGFxShaderFXTarget> requirementsListBackground;  // 100
+			std::unique_ptr<BSGFxShaderFXTarget> happinessPeopleBase;         // 108
+			std::unique_ptr<BSGFxShaderFXTarget> happinessFoodBase;           // 110
+			std::unique_ptr<BSGFxShaderFXTarget> happinessWaterBase;          // 118
+			std::unique_ptr<BSGFxShaderFXTarget> happinessPowerBase;          // 120
+			std::unique_ptr<BSGFxShaderFXTarget> happinessSafetyBase;         // 128
+			std::unique_ptr<BSGFxShaderFXTarget> happinessBedsBase;           // 130
+			std::unique_ptr<BSGFxShaderFXTarget> happinessHappyValue;         // 138
+			std::unique_ptr<BSGFxShaderFXTarget> happinessHappyLabel;         // 140
+			std::unique_ptr<BSGFxShaderFXTarget> happinessHappyIcon;          // 148
+			std::unique_ptr<BSGFxShaderFXTarget> happinessHappyArrow;         // 150
+			std::unique_ptr<BSGFxShaderFXTarget> happinessSizeBase;           // 158
+			std::unique_ptr<BSGFxShaderFXTarget> happinessBarBrackets;        // 160
+			std::unique_ptr<BSGFxShaderFXTarget> requirementsBase;            // 168
+			std::unique_ptr<BSGFxShaderFXTarget> itemName;                    // 170
+			std::unique_ptr<BSGFxShaderFXTarget> selectionBracket;            // 178
+			std::unique_ptr<BSGFxShaderFXTarget> itemCounts;                  // 180
+			std::unique_ptr<BSGFxShaderFXTarget> newRecipeIcon;               // 188
+			std::unique_ptr<BSGFxShaderFXTarget> iconCardBracketsAndText;     // 190
+			std::unique_ptr<BSGFxShaderFXTarget> producesIcons;               // 198
+			std::unique_ptr<BSGFxShaderFXTarget> requiresIcon1;               // 1A0
+			std::unique_ptr<BSGFxShaderFXTarget> requiresIcon2;               // 1A8
+			std::unique_ptr<BSGFxShaderFXTarget> assignmentIcon;              // 1B0
+			std::unique_ptr<BSGFxShaderFXTarget> rowBrackets;                 // 1B8
+			std::unique_ptr<BSGFxShaderFXTarget> displayPath;                 // 1C0
+			std::unique_ptr<BSGFxShaderFXTarget> perkPanel1;                  // 1C8
+			std::unique_ptr<BSGFxShaderFXTarget> perkPanel2;                  // 1D0
+			std::unique_ptr<BSGFxShaderFXTarget> descriptionBase;             // 1D8
+			std::unique_ptr<BSGFxShaderFXTarget> iconBackground;              // 1E0
 		};
 		static_assert(sizeof(FXWorkshopMenu) == 0x1E8);
 
@@ -1179,7 +1179,7 @@ namespace RE
 		bool                                                                                        useMovementAsDirectional;                // 430
 		bool                                                                                        motionBlurActive;                        // 431
 		bool                                                                                        exitDebounce;                            // 432
-		msvc::unique_ptr<FXWorkshopMenu>                                                            workshopMenuBase;                        // 438
+		std::unique_ptr<FXWorkshopMenu>                                                             workshopMenuBase;                        // 438
 	};
 	static_assert(sizeof(WorkshopMenu) == 0x440);
 
@@ -1440,7 +1440,7 @@ namespace RE
 		static constexpr auto MENU_NAME{ "CursorMenu"sv };
 
 		// members
-		msvc::unique_ptr<BSGFxShaderFXTarget> cursor;  // E0
+		std::unique_ptr<BSGFxShaderFXTarget> cursor;  // E0
 	};
 	static_assert(sizeof(CursorMenu) == 0xE8);
 
@@ -1558,13 +1558,13 @@ namespace RE
 		// members
 		ItemSorter                                     containerItemSorter;            // 0F0
 		ItemSorter                                     playerItemSorter;               // 12C
-		msvc::unique_ptr<BSGFxShaderFXTarget>          playerBracketBackground_mc;     // 168
-		msvc::unique_ptr<BSGFxShaderFXTarget>          containerBracketBackground_mc;  // 170
-		msvc::unique_ptr<BSGFxShaderFXTarget>          containerList_mc;               // 178
-		msvc::unique_ptr<BSGFxShaderFXTarget>          playerInventory_mc;             // 180
-		msvc::unique_ptr<BSGFxShaderFXTarget>          containerInventory_mc;          // 188
-		msvc::unique_ptr<BSGFxShaderFXTarget>          itemCard_mc;                    // 190
-		msvc::unique_ptr<FXQuantityMenu>               quantityMenu_mc;                // 198
+		std::unique_ptr<BSGFxShaderFXTarget>           playerBracketBackground_mc;     // 168
+		std::unique_ptr<BSGFxShaderFXTarget>           containerBracketBackground_mc;  // 170
+		std::unique_ptr<BSGFxShaderFXTarget>           containerList_mc;               // 178
+		std::unique_ptr<BSGFxShaderFXTarget>           playerInventory_mc;             // 180
+		std::unique_ptr<BSGFxShaderFXTarget>           containerInventory_mc;          // 188
+		std::unique_ptr<BSGFxShaderFXTarget>           itemCard_mc;                    // 190
+		std::unique_ptr<FXQuantityMenu>                quantityMenu_mc;                // 198
 		InventoryUserUIInterface                       playerInv;                      // 1A0
 		InventoryUserUIInterface                       containerInv;                   // 220
 		Inventory3DManager                             inv3DModelManager;              // 2A0
@@ -1605,12 +1605,12 @@ namespace RE
 		}
 
 		// members
-		msvc::unique_ptr<BSGFxShaderFXTarget> pickpocketInfo_mc;         // 430
-		std::uint32_t                         valueStolenFromContainer;  // 438
-		bool                                  containerAccessed;         // 43C
-		bool                                  addedTempItems;            // 43D
-		bool                                  plantedExplosiveWeapon;    // 43E
-		bool                                  containerIsAnimatingOpen;  // 43F
+		std::unique_ptr<BSGFxShaderFXTarget> pickpocketInfo_mc;         // 430
+		std::uint32_t                        valueStolenFromContainer;  // 438
+		bool                                 containerAccessed;         // 43C
+		bool                                 addedTempItems;            // 43D
+		bool                                 plantedExplosiveWeapon;    // 43E
+		bool                                 containerIsAnimatingOpen;  // 43F
 	};
 	static_assert(sizeof(ContainerMenu) == 0x440);
 
@@ -1623,8 +1623,8 @@ namespace RE
 		static constexpr auto MENU_NAME{ "DialogueMenu"sv };
 
 		// Members
-		msvc::unique_ptr<BSGFxShaderFXTarget>                   dialogueButtonOBJs[4];
-		msvc::unique_ptr<BSGFxShaderFXTarget>                   speechChallengeAnimObj;
+		std::unique_ptr<BSGFxShaderFXTarget>                    dialogueButtonOBJs[4];
+		std::unique_ptr<BSGFxShaderFXTarget>                    speechChallengeAnimObj;
 		BSTValueEventSink<HUDPerkVaultBoySwfDisplayEvent>       CurrentVBPerk;
 		BSTValueEventSource<ShowingDialogueSpeechChallengeAnim> ShowingSpeechChallenge;
 		BSTSmartPointer<BSInputEnableLayer>                     inputLayer;
@@ -1694,8 +1694,8 @@ namespace RE
 
 		// members
 		BSTHashMap<InventoryInterface::Handle*, ItemBarterData*> barteredItems;              // 430
-		msvc::unique_ptr<BSGFxShaderFXTarget>                    capsTransferInfo_mc;        // 460
-		msvc::unique_ptr<BSGFxShaderFXTarget>                    capsTransferBackground_mc;  // 468
+		std::unique_ptr<BSGFxShaderFXTarget>                     capsTransferInfo_mc;        // 460
+		std::unique_ptr<BSGFxShaderFXTarget>                     capsTransferBackground_mc;  // 468
 		ObjectRefHandle                                          vendorChestRef;             // 470
 		ObjectRefHandle                                          vendorActor;                // 474
 		BarterMenuTentativeInventoryUIInterface                  playerTentativeInv;         // 478
@@ -1771,7 +1771,7 @@ namespace RE
 			{
 				BGSMod::Attachment::Mod* mod;
 				TESBoundObject*          object;
-			};                                                                              // 00
+			};  // 00
 			const BGSConstructibleObject*                                   recipe;         // 08
 			BSTArray<BSTTuple<TESForm*, BGSTypedFormValuePair::SharedVal>>* requiredItems;  // 10
 			BSTArray<BSTTuple<BGSPerk*, std::uint32_t>>                     requiredPerks;  // 18
@@ -2249,21 +2249,21 @@ namespace RE
 		static constexpr auto MENU_NAME{ "PauseMenu"sv };
 
 		// members
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpTopicList;            // 228
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpPanelBrackets;        // 230
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpListBrackets;         // 238
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpText;                 // 240
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpTitleText;            // 248
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpScrollUp;             // 250
-		msvc::unique_ptr<BSGFxShaderFXTarget> helpScrollDown;           // 258
-		Rumble::AutoRumblePause               rumbleLock;               // 260
-		bool                                  hideScreen3D;             // 261
-		bool                                  modMenuShaderWasEnabled;  // 262
-		bool                                  vatsWasEnabled;           // 263
-		bool                                  vatsDepthTestMask;        // 264
-		bool                                  quitToMainMenuQueued;     // 265
-		bool                                  quitToDesktopQueued;      // 266
-		bool                                  noProfileSelected;        // 267
+		std::unique_ptr<BSGFxShaderFXTarget> helpTopicList;            // 228
+		std::unique_ptr<BSGFxShaderFXTarget> helpPanelBrackets;        // 230
+		std::unique_ptr<BSGFxShaderFXTarget> helpListBrackets;         // 238
+		std::unique_ptr<BSGFxShaderFXTarget> helpText;                 // 240
+		std::unique_ptr<BSGFxShaderFXTarget> helpTitleText;            // 248
+		std::unique_ptr<BSGFxShaderFXTarget> helpScrollUp;             // 250
+		std::unique_ptr<BSGFxShaderFXTarget> helpScrollDown;           // 258
+		Rumble::AutoRumblePause              rumbleLock;               // 260
+		bool                                 hideScreen3D;             // 261
+		bool                                 modMenuShaderWasEnabled;  // 262
+		bool                                 vatsWasEnabled;           // 263
+		bool                                 vatsDepthTestMask;        // 264
+		bool                                 quitToMainMenuQueued;     // 265
+		bool                                 quitToDesktopQueued;      // 266
+		bool                                 noProfileSelected;        // 267
 	};
 	static_assert(sizeof(PauseMenu) == 0x268);
 

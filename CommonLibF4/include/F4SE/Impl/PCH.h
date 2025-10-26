@@ -536,6 +536,3 @@ namespace REL
 #include "RE/VTABLE_IDs.h"
 
 #include "RE/Bethesda/BSCoreTypes.h"
-
-#include "RE/msvc/memory.h"
-#include "RE/msvc/typeinfo.h"

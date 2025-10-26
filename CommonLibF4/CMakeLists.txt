@@ -93,16 +93,19 @@ target_include_directories(
 target_link_libraries(
 	"${PROJECT_NAME}"
 	PUBLIC
- 		advapi32.lib
+		Advapi32.lib
 		bcrypt.lib
-		d3d11.lib
+		D3D11.lib
 		d3dcompiler.lib
-		dbghelp.lib
-		dxgi.lib
+		Dbghelp.lib
+		DXGI.lib
 		mmio::mmio
-		ole32.lib
+		Ole32.lib
+		shell32.lib
 		spdlog::spdlog
-		version.lib
+		User32.lib
+        Ws2_32.lib
+		Version.lib
 )
 
 target_precompile_headers(

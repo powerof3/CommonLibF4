@@ -355,8 +355,6 @@ set(SOURCES
 	include/RE/Scaleform/Render/Render_Types2D.h
 	include/RE/Scaleform/Render/Render_Viewport.h
 	include/RE/VTABLE_IDs.h
-	include/RE/msvc/memory.h
-	include/RE/msvc/typeinfo.h
 	include/REL/IAT.h
 	include/REL/ID.h
 	include/REL/IDDB.h
@@ -367,9 +365,24 @@ set(SOURCES
 	include/REL/Relocation.h
 	include/REL/Segment.h
 	include/REL/Version.h
+	include/REX/BASE.h
 	include/REX/PS4.h
 	include/REX/PS4/SCEPAD.h
 	include/REX/REX.h
+	include/REX/REX/AtomicRef.h
+	include/REX/REX/CAST.h
+	include/REX/REX/CONVERT.h
+	include/REX/REX/Enum.h
+	include/REX/REX/EnumSet.h
+	include/REX/REX/INI.h
+	include/REX/REX/JSON.h
+	include/REX/REX/LOG.h
+	include/REX/REX/MemoryMap.h
+	include/REX/REX/ScopeExit.h
+	include/REX/REX/Setting.h
+	include/REX/REX/Singleton.h
+	include/REX/REX/StaticString.h
+	include/REX/REX/TOML.h
 	include/REX/W32.h
 	include/REX/W32/ADVAPI32.h
 	include/REX/W32/BASE.h
@@ -392,10 +405,12 @@ set(SOURCES
 	include/REX/W32/DXGI_5.h
 	include/REX/W32/DXGI_6.h
 	include/REX/W32/KERNEL32.h
+	include/REX/W32/NT.h
 	include/REX/W32/OLE32.h
 	include/REX/W32/SHELL32.h
 	include/REX/W32/USER32.h
 	include/REX/W32/VERSION.h
+	include/REX/W32/WS2_32.h
 	include/REX/W32/XINPUT.h
 	src/F4SE/API.cpp
 	src/F4SE/Impl/PCH.cpp
@@ -445,5 +460,11 @@ set(SOURCES
 	src/REL/Module.cpp
 	src/REL/Relocation.cpp
 	src/REL/Version.cpp
+	src/REX/PCH.h
+	src/REX/REX.cpp
+	src/REX/REX/INI.cpp
+	src/REX/REX/JSON.cpp
+	src/REX/REX/LOG.cpp
+	src/REX/REX/TOML.cpp
 	src/REX/W32.cpp
 )

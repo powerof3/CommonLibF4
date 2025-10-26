@@ -4,7 +4,10 @@
   "dependencies": [
     "args",
     "rsm-mmio",
-    "spdlog",
+    {
+      "name": "spdlog",
+      "features": [ "wchar" ]
+    },
     "xbyak"
   ]
 }

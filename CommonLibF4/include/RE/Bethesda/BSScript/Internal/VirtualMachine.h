@@ -275,7 +275,7 @@ namespace RE
 				std::uint32_t                                              nextStackID;                 // BDC0
 				mutable BSSpinLock                                         frozenStacksLock;            // BDC4
 				std::byte                                                  padBDCC[0xBDD0 - 0xBDCC];    // BDCC
-				BSTArray<msvc::unique_ptr<PendingLatentReturn>>            pendingLatentReturns;        // BDD0
+				BSTArray<std::unique_ptr<PendingLatentReturn>>             pendingLatentReturns;        // BDD0
 				BSTSmartPointer<BSScript::Stack>                           frozenStacksHead;            // BDE8
 				std::uint32_t                                              frozenStacksCount;           // BDF0
 				REX::EnumSet<FreezeState, std::uint32_t>                   freezeState;                 // BDF4
