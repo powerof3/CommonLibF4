@@ -7,7 +7,7 @@
 namespace RE
 {
 	class MenuOpenCloseEvent;
-	
+
 	struct IdleInputEvent;
 
 	class BSIdleInputWatcher :
