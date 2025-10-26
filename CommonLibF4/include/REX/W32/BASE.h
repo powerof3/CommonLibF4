@@ -1,5 +1,7 @@
 #pragma once
 
+#include "REX/BASE.h"
+
 #ifdef _INC_WINAPIFAMILY
 #	error Windows API detected. Please move any Windows API includes after CommonLib, or remove them.
 #endif
@@ -162,6 +164,7 @@ namespace REX::W32
 		};
 		std::int64_t value;
 	};
+	static_assert(sizeof(LARGE_INTEGER) == 0x8);
 
 	union ULARGE_INTEGER
 	{
@@ -172,6 +175,15 @@ namespace REX::W32
 		};
 		std::uint64_t value;
 	};
+	static_assert(sizeof(ULARGE_INTEGER) == 0x8);
+
+	struct UNICODE_STRING
+	{
+		std::uint16_t length;
+		std::uint16_t maxLength;
+		wchar_t*      buffer;
+	};
+	static_assert(sizeof(UNICODE_STRING) == 0x10);
 }
 
 namespace REX::W32

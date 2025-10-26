@@ -5,10 +5,12 @@
 #include "REX/W32/DBGHELP.h"
 #include "REX/W32/DXGI.h"
 #include "REX/W32/KERNEL32.h"
+#include "REX/W32/NT.h"
 #include "REX/W32/OLE32.h"
 #include "REX/W32/SHELL32.h"
 #include "REX/W32/USER32.h"
 #include "REX/W32/VERSION.h"
+#include "REX/W32/WS2_32.h"
 
 // ADVAPI32
 
@@ -288,6 +290,8 @@ namespace REX::W32
 
 // KERNEL32
 
+REX_W32_IMPORT(void, AcquireSRWLockShared, REX::W32::SRWLOCK*);
+REX_W32_IMPORT(void, AcquireSRWLockExclusive, REX::W32::SRWLOCK*);
 REX_W32_IMPORT(REX::W32::BOOL, CloseHandle, REX::W32::HANDLE);
 REX_W32_IMPORT(REX::W32::HANDLE, CreateFileA, const char*, std::uint32_t, std::uint32_t, REX::W32::SECURITY_ATTRIBUTES*, std::uint32_t, std::uint32_t, REX::W32::HANDLE);
 REX_W32_IMPORT(REX::W32::HANDLE, CreateFileW, const wchar_t*, std::uint32_t, std::uint32_t, REX::W32::SECURITY_ATTRIBUTES*, std::uint32_t, std::uint32_t, REX::W32::HANDLE);
@@ -311,6 +315,8 @@ REX_W32_IMPORT(REX::W32::BOOL, FlushInstructionCache, REX::W32::HANDLE, const vo
 REX_W32_IMPORT(REX::W32::BOOL, FreeLibrary, REX::W32::HMODULE);
 REX_W32_IMPORT(REX::W32::BOOL, GetComputerNameA, char*, std::uint32_t*);
 REX_W32_IMPORT(REX::W32::BOOL, GetComputerNameW, wchar_t*, std::uint32_t*);
+REX_W32_IMPORT(std::uint32_t, GetCurrentDirectoryA, std::uint32_t, char*);
+REX_W32_IMPORT(std::uint32_t, GetCurrentDirectoryW, std::uint32_t, wchar_t*);
 REX_W32_IMPORT(REX::W32::HANDLE, GetCurrentProcess);
 REX_W32_IMPORT(std::uint32_t, GetCurrentThreadId);
 REX_W32_IMPORT(std::uint32_t, GetEnvironmentVariableA, const char*, char*, std::uint32_t);
@@ -327,7 +333,9 @@ REX_W32_IMPORT(std::uint32_t, GetPrivateProfileStringA, const char*, const char*
 REX_W32_IMPORT(std::uint32_t, GetPrivateProfileStringW, const wchar_t*, const wchar_t*, const wchar_t*, wchar_t*, std::uint32_t, const wchar_t*);
 REX_W32_IMPORT(void*, GetProcAddress, REX::W32::HMODULE, const char*);
 REX_W32_IMPORT(void, GetSystemInfo, REX::W32::SYSTEM_INFO*);
+REX_W32_IMPORT(void, InitializeCriticalSection, REX::W32::CRITICAL_SECTION*);
 REX_W32_IMPORT(REX::W32::BOOL, InitializeCriticalSectionAndSpinCount, REX::W32::CRITICAL_SECTION*, std::uint32_t);
+REX_W32_IMPORT(void, InitializeSRWLock, REX::W32::SRWLOCK*);
 REX_W32_IMPORT(REX::W32::BOOL, IsDebuggerPresent);
 REX_W32_IMPORT(std::int32_t, LCMapStringEx, const wchar_t*, std::uint32_t, const wchar_t*, std::int32_t, wchar_t*, std::int32_t, REX::W32::NLSVERSIONINFO*, void*, std::intptr_t);
 REX_W32_IMPORT(void, LeaveCriticalSection, REX::W32::CRITICAL_SECTION*);
@@ -342,13 +350,19 @@ REX_W32_IMPORT(void, OutputDebugStringA, const char*);
 REX_W32_IMPORT(void, OutputDebugStringW, const wchar_t*);
 REX_W32_IMPORT(REX::W32::BOOL, QueryPerformanceCounter, std::int64_t*);
 REX_W32_IMPORT(REX::W32::BOOL, QueryPerformanceFrequency, std::int64_t*);
+REX_W32_IMPORT(void, ReleaseSRWLockShared, REX::W32::SRWLOCK*);
+REX_W32_IMPORT(void, ReleaseSRWLockExclusive, REX::W32::SRWLOCK*);
 REX_W32_IMPORT(std::uint32_t, ResumeThread, REX::W32::HANDLE);
+REX_W32_IMPORT(std::uint32_t, SetCriticalSectionSpinCount, REX::W32::CRITICAL_SECTION*, std::uint32_t);
 REX_W32_IMPORT(REX::W32::BOOL, SetEnvironmentVariableA, const char*, const char*);
 REX_W32_IMPORT(REX::W32::BOOL, SetEnvironmentVariableW, const wchar_t*, const wchar_t*);
 REX_W32_IMPORT(void, Sleep, std::uint32_t);
 REX_W32_IMPORT(REX::W32::BOOL, TerminateProcess, REX::W32::HANDLE, std::uint32_t);
 REX_W32_IMPORT(void*, TlsGetValue, std::uint32_t);
 REX_W32_IMPORT(REX::W32::BOOL, TlsSetValue, std::uint32_t, void*);
+REX_W32_IMPORT(REX::W32::BOOL, TryAcquireSRWLockExclusive, REX::W32::SRWLOCK*);
+REX_W32_IMPORT(REX::W32::BOOL, TryAcquireSRWLockShared, REX::W32::SRWLOCK*);
+REX_W32_IMPORT(REX::W32::BOOL, TryEnterCriticalSection, REX::W32::CRITICAL_SECTION*);
 REX_W32_IMPORT(REX::W32::BOOL, UnmapViewOfFile, const void*);
 REX_W32_IMPORT(void*, VirtualAlloc, void*, std::size_t, std::uint32_t, std::uint32_t);
 REX_W32_IMPORT(void*, VirtualAllocEx, REX::W32::HANDLE, void*, std::size_t, std::uint32_t, std::uint32_t);
@@ -367,6 +381,16 @@ extern "C" REX::W32::IMAGE_DOS_HEADER __ImageBase;
 
 namespace REX::W32
 {
+	void AcquireSRWLockShared(SRWLOCK* a_lock) noexcept
+	{
+		::W32_IMPL_AcquireSRWLockShared(a_lock);
+	}
+
+	void AcquireSRWLockExclusive(SRWLOCK* a_lock) noexcept
+	{
+		::W32_IMPL_AcquireSRWLockExclusive(a_lock);
+	}
+
 	bool CloseHandle(HANDLE a_handle) noexcept
 	{
 		return ::W32_IMPL_CloseHandle(a_handle);
@@ -482,6 +506,16 @@ namespace REX::W32
 		return ::W32_IMPL_GetComputerNameW(a_buffer, a_size);
 	}
 
+	std::uint32_t GetCurrentDirectoryA(std::uint32_t a_size, char* a_buffer) noexcept
+	{
+		return ::W32_IMPL_GetCurrentDirectoryA(a_size, a_buffer);
+	}
+
+	std::uint32_t GetCurrentDirectoryW(std::uint32_t a_size, wchar_t* a_buffer) noexcept
+	{
+		return ::W32_IMPL_GetCurrentDirectoryW(a_size, a_buffer);
+	}
+
 	HMODULE GetCurrentModule() noexcept
 	{
 		return reinterpret_cast<HMODULE>(std::addressof(__ImageBase));
@@ -580,9 +614,19 @@ namespace REX::W32
 		return reinterpret_cast<IMAGE_SECTION_HEADER*>(section);
 	}
 
-	bool InitializeCriticalSectionAndSpinCount(CRITICAL_SECTION* a_criticalSection, std::uint32_t a_spinCount)
+	void InitializeCriticalSection(CRITICAL_SECTION* a_criticalSection) noexcept
+	{
+		::W32_IMPL_InitializeCriticalSection(a_criticalSection);
+	}
+
+	bool InitializeCriticalSectionAndSpinCount(CRITICAL_SECTION* a_criticalSection, std::uint32_t a_spinCount) noexcept
 	{
 		return ::W32_IMPL_InitializeCriticalSectionAndSpinCount(a_criticalSection, a_spinCount);
+	}
+
+	void InitializeSRWLock(SRWLOCK* a_lock) noexcept
+	{
+		::W32_IMPL_InitializeSRWLock(a_lock);
 	}
 
 	std::uint32_t InterlockedCompareExchange(volatile std::uint32_t* a_target, std::uint32_t a_value, std::uint32_t a_compare) noexcept
@@ -695,9 +739,24 @@ namespace REX::W32
 		return ::W32_IMPL_QueryPerformanceFrequency(a_frequency);
 	}
 
+	void ReleaseSRWLockShared(SRWLOCK* a_lock) noexcept
+	{
+		::W32_IMPL_ReleaseSRWLockShared(a_lock);
+	}
+
+	void ReleaseSRWLockExclusive(SRWLOCK* a_lock) noexcept
+	{
+		::W32_IMPL_ReleaseSRWLockExclusive(a_lock);
+	}
+
 	std::uint32_t ResumeThread(HANDLE a_handle) noexcept
 	{
 		return ::W32_IMPL_ResumeThread(a_handle);
+	}
+
+	std::uint32_t SetCriticalSectionSpinCount(CRITICAL_SECTION* a_criticalSection, std::uint32_t a_spinCount) noexcept
+	{
+		return ::W32_IMPL_SetCriticalSectionSpinCount(a_criticalSection, a_spinCount);
 	}
 
 	bool SetEnvironmentVariableA(const char* a_name, const char* a_value) noexcept
@@ -728,6 +787,21 @@ namespace REX::W32
 	bool TlsSetValue(std::uint32_t a_index, void* a_value) noexcept
 	{
 		return ::W32_IMPL_TlsSetValue(a_index, a_value);
+	}
+
+	bool TryAcquireSRWLockExclusive(SRWLOCK* a_lock) noexcept
+	{
+		return ::W32_IMPL_TryAcquireSRWLockExclusive(a_lock);
+	}
+
+	bool TryAcquireSRWLockShared(SRWLOCK* a_lock) noexcept
+	{
+		return ::W32_IMPL_TryAcquireSRWLockShared(a_lock);
+	}
+
+	bool TryEnterCriticalSection(CRITICAL_SECTION* a_criticalSection) noexcept
+	{
+		return ::W32_IMPL_TryEnterCriticalSection(a_criticalSection);
 	}
 
 	bool UnmapViewOfFile(const void* a_baseAddress) noexcept
@@ -793,6 +867,16 @@ namespace REX::W32
 	bool WriteProcessMemory(HANDLE a_process, void* a_address, const void* a_buf, std::size_t a_bufLen, std::size_t* a_bufWritten) noexcept
 	{
 		return ::W32_IMPL_WriteProcessMemory(a_process, a_address, a_buf, a_bufLen, a_bufWritten);
+	}
+}
+
+// NT
+
+namespace REX::W32
+{
+	TEB* NtCurrentTeb() noexcept
+	{
+		return reinterpret_cast<TEB*>(__readgsqword(offsetof(NT_TIB, self)));
 	}
 }
 
@@ -933,5 +1017,29 @@ namespace REX::W32
 	bool VerQueryValueW(const void* a_block, const wchar_t* a_subBlock, void** a_buf, std::uint32_t* a_bufLen) noexcept
 	{
 		return ::W32_IMPL_VerQueryValueW(a_block, a_subBlock, a_buf, a_bufLen);
+	}
+}
+
+// WS2_32
+
+REX_W32_IMPORT(std::uint16_t, htons, std::uint16_t);
+REX_W32_IMPORT(std::uint32_t, ntohl, std::uint32_t);
+REX_W32_IMPORT(std::int32_t, WSAGetLastError);
+
+namespace REX::W32
+{
+	std::uint16_t htons(std::uint16_t a_host) noexcept
+	{
+		return ::W32_IMPL_htons(a_host);
+	}
+
+	std::uint32_t ntohl(std::uint32_t a_net) noexcept
+	{
+		return ::W32_IMPL_ntohl(a_net);
+	}
+
+	std::int32_t WSAGetLastError() noexcept
+	{
+		return ::W32_IMPL_WSAGetLastError();
 	}
 }
