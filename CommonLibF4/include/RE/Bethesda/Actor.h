@@ -506,6 +506,20 @@ namespace RE
 	class AIProcess
 	{
 	public:
+		void AddToProcedureIndexRunning(Actor* a_actor, std::int32_t a_number)
+		{
+			using func_t = decltype(&AIProcess::AddToProcedureIndexRunning);
+			static REL::Relocation<func_t> func{ REL::ID(2718412) };
+			return func(this, a_actor, a_number);
+		}
+
+		void ComputeLastTimeProcessed()
+		{
+			using func_t = decltype(&AIProcess::ComputeLastTimeProcessed);
+			static REL::Relocation<func_t> func{ REL::ID(2231541) };
+			return func(this);
+		}
+		
 		[[nodiscard]] TESAmmo* GetCurrentAmmo(BGSEquipIndex a_equipIndex) const
 		{
 			using func_t = decltype(&AIProcess::GetCurrentAmmo);
@@ -586,6 +600,13 @@ namespace RE
 			using func_t = decltype(&AIProcess::SetEquippedItem);
 			static REL::Relocation<func_t> func{ REL::ID(1200276) };
 			return func(this, a_actor, a_instance, a_slot);
+		}
+
+		void SetRunOncePackage(TESPackage* a_package, Actor* a_actor)
+		{
+			using func_t = decltype(&AIProcess::SetRunOncePackage);
+			static REL::Relocation<func_t> func{ REL::ID(2232344) };
+			return func(this, a_package, a_actor);
 		}
 
 		bool SetupSpecialIdle(Actor& a_actor, RE::DEFAULT_OBJECT a_defaultObject, TESIdleForm* a_idle, bool a_testConditions, TESObjectREFR* a_targetOverride)
@@ -1256,6 +1277,13 @@ namespace RE
 			using func_t = decltype(&Actor::SetHeading);
 			static REL::Relocation<func_t> func{ REL::ID(2229625) };
 			return func(this, a_angle);
+		}
+
+		void StopInteractingQuick(bool a_instant, bool a_moveActor, bool a_update3D)
+		{
+			using func_t = decltype(&Actor::StopInteractingQuick);
+			static REL::Relocation<func_t> func{ REL::ID(2231227) };
+			return func(this, a_instant, a_moveActor, a_update3D);
 		}
 
 		void TrespassAlarm(TESObjectREFR* a_refr, TESForm* a_owner, std::int32_t a_crime)

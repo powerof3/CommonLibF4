@@ -278,6 +278,14 @@ namespace RE
 	};
 	static_assert(sizeof(HUDModeEvent) == 0x08);
 
+	struct IdleInputEvent
+	{
+	public:
+		// members
+		bool starting;
+	};
+	static_assert(sizeof(IdleInputEvent) == 0x1);
+
 	struct InventoryItemDisplayData
 	{
 	public:

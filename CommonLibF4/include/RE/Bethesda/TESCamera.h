@@ -218,7 +218,7 @@ namespace RE
 		TESCameraState* PushState(CameraState a_state)
 		{
 			using func_t = decltype(&PlayerCamera::PushState);
-			static REL::Relocation<func_t> func{ REL::ID(0) };
+			static REL::Relocation<func_t> func{ REL::ID(2248422) };
 			return func(this, a_state);
 		}
 

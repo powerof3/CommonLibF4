@@ -349,6 +349,13 @@ namespace RE
 			return func(this, a_formID, a_rank);
 		}
 
+		void SetAIControlledPackage(bool a_enable)
+		{
+			using func_t = decltype(&PlayerCharacter::SetAIControlledPackage);
+			static REL::Relocation<func_t> func{ REL::ID(2233087) };
+			return func(this, a_enable);
+		}
+
 		void SetEscaping(bool a_flag, bool a_escaped)
 		{
 			using func_t = decltype(&PlayerCharacter::SetEscaping);

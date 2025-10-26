@@ -189,21 +189,21 @@ namespace RE
 		bool SetGraphVariableBool(const BSFixedString& a_variable, bool a_var)
 		{
 			using func_t = decltype(&IAnimationGraphManagerHolder::SetGraphVariableBool);
-			static REL::Relocation<func_t> func{ REL::ID(1437197) };
+			static REL::Relocation<func_t> func{ REL::ID(2214543) };
 			return func(this, a_variable, a_var);
 		};
 
 		bool SetGraphVariableFloat(const BSFixedString& a_variable, float a_var)
 		{
 			using func_t = decltype(&IAnimationGraphManagerHolder::SetGraphVariableFloat);
-			static REL::Relocation<func_t> func{ REL::ID(27400) };
+			static REL::Relocation<func_t> func{ REL::ID(2214545) };
 			return func(this, a_variable, a_var);
 		};
 
 		bool SetGraphVariableInt(const BSFixedString& a_variable, int a_var)
 		{
 			using func_t = decltype(&IAnimationGraphManagerHolder::SetGraphVariableInt);
-			static REL::Relocation<func_t> func{ REL::ID(732926) };
+			static REL::Relocation<func_t> func{ REL::ID(2214544) };
 			return func(this, a_variable, a_var);
 		};
 

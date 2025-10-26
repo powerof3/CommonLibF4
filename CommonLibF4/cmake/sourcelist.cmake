@@ -47,6 +47,7 @@ set(SOURCES
 	include/RE/Bethesda/BSGraphics.h
 	include/RE/Bethesda/BSGraphicsUtility.h
 	include/RE/Bethesda/BSHavok.h
+	include/RE/Bethesda/BSIdleInputWatcher.h
 	include/RE/Bethesda/BSInputDeviceManager.h
 	include/RE/Bethesda/BSInputEnableManager.h
 	include/RE/Bethesda/BSInputEventReceiver.h
