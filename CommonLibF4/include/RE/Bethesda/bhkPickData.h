@@ -3,21 +3,21 @@
 #include "RE/Bethesda/MemoryManager.h"
 #include "RE/Bethesda/bhkCharacterController.h"
 #include "RE/Havok/hkVector4.h"
-#include "RE/Havok/hknpCollisionResult.h"
 #include "RE/Havok/hknpCollisionQuery.h"
 #include "RE/Havok/hknpCollisionQueryCollector.h"
+#include "RE/Havok/hknpCollisionResult.h"
 #include "RE/NetImmerse/NiPoint.h"
 
 namespace RE
 {
 	class hknpBSWorld;
 	class NiAVObject;
-	
+
 	struct bhkPickData
 	{
 	public:
 		enum class COLLECTOR_TYPE;
-		
+
 		bhkPickData()
 		{
 			typedef bhkPickData*           func_t(bhkPickData*);

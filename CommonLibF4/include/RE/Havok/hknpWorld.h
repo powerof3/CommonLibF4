@@ -1,9 +1,9 @@
 #pragma once
 
 #include "RE/Havok/hkArray.h"
+#include "RE/Havok/hkBaseTypes.h"
 #include "RE/Havok/hkBitField.h"
 #include "RE/Havok/hkBlockStream.h"
-#include "RE/Havok/hkBaseTypes.h"
 #include "RE/Havok/hkIntSpaceUtil.h"
 #include "RE/Havok/hkRefPtr.h"
 #include "RE/Havok/hkReferencedObject.h"

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "RE/Havok/hkArray.h"
-#include "RE/Havok/hkBitField.h"
 #include "RE/Havok/hkBaseTypes.h"
+#include "RE/Havok/hkBitField.h"
 #include "RE/Havok/hkMap.h"
 #include "RE/Havok/hknpBodyId.h"
 

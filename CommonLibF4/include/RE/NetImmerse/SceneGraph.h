@@ -7,7 +7,7 @@ namespace RE
 	class BSCullingProcess;
 	class NiCamera;
 	class NiVisibleArray;
-	
+
 	class __declspec(novtable) BSSceneGraph :
 		public NiNode  // 000
 	{

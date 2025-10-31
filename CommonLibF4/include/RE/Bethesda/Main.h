@@ -46,7 +46,7 @@ namespace RE
 			static REL::Relocation<func_t> func{ REL::ID(2228956) };
 			return func();
 		}
-		
+
 		[[nodiscard]] static NiPointer<SceneGraph> WorldRootNode()
 		{
 			using func_t = decltype(&Main::WorldRootNode);

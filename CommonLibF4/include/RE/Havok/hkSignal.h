@@ -3,7 +3,6 @@
 #include "RE/Havok/hkPtrAndInt.h"
 #include "RE/Havok/hkSlot.h"
 
-
 namespace RE
 {
 	class hkSignal

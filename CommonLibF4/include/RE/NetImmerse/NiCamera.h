@@ -1,9 +1,9 @@
 #pragma once
 
 #include "RE/NetImmerse/NiAVObject.h"
+#include "RE/NetImmerse/NiBound.h"
 #include "RE/NetImmerse/NiFrustum.h"
 #include "RE/NetImmerse/NiRect.h"
-#include "RE/NetImmerse/NiBound.h"
 
 namespace RE
 {

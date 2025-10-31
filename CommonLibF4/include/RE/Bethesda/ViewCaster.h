@@ -55,13 +55,13 @@ namespace RE
 
 	class ViewCasterBase
 	{
-	public:	
+	public:
 		ObjectRefHandle QActivatePickRef()
 		{
 			BSAutoReadLock locker(viewCasterLock);
 			return GetViewCasterDataRef().activatePickRef;
 		}
-		
+
 		// members
 		BSTValueEventSource<ViewCasterUpdateEvent> viewCasterEvent;   // 00
 		BSTOptional<NiPoint3>                      pickContactPoint;  // 50
@@ -87,9 +87,9 @@ namespace RE
 			static REL::Relocation<ViewCaster**> singleton{ REL::ID(2690449) };
 			return *singleton;
 		}
-		
+
 		// members
-		hkRefPtr<hknpSphereShape> castShape; // 70
+		hkRefPtr<hknpSphereShape> castShape;  // 70
 	};
 	static_assert(sizeof(ViewCaster) == 0x78);
 }
