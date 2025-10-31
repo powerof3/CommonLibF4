@@ -1492,7 +1492,7 @@ namespace RE
 		[[nodiscard]] bhkWorld* GetbhkWorld() const
 		{
 			using func_t = decltype(&TESObjectCELL::GetbhkWorld);
-			static REL::Relocation<func_t> func{ REL::ID(1326073) };
+			static REL::Relocation<func_t> func{ REL::ID(2200260) };
 			return func(this);
 		}
 
@@ -1548,7 +1548,7 @@ namespace RE
 		[[nodiscard]] NiAVObject* Pick(bhkPickData& pd)
 		{
 			using func_t = decltype(&TESObjectCELL::Pick);
-			static REL::Relocation<func_t> func{ REL::ID(434717) };
+			static REL::Relocation<func_t> func{ REL::ID(2200263) };
 			return func(this, pd);
 		}
 

@@ -12,6 +12,7 @@
 #include "RE/Bethesda/BSTSingleton.h"
 #include "RE/Bethesda/BSTSmartPointer.h"
 #include "RE/Bethesda/BSTTuple.h"
+#include "RE/Bethesda/CFilter.h"
 #include "RE/Bethesda/IMovementInterface.h"
 #include "RE/Bethesda/TESObjectREFRs.h"
 #include "RE/NetImmerse/NiFlags.h"
@@ -22,7 +23,18 @@ namespace RE
 {
 	enum class ACTOR_CRITICAL_STAGE;
 	enum class ACTOR_LIFE_STATE;
-	enum class ACTOR_LOS_LOCATION;
+
+	enum class ACTOR_LOS_LOCATION
+	{
+		kNone = 0,
+		kEye = 1,
+		kHead = 2,
+		kTorso = 3,
+		kFeet = 4,
+
+		kTotal
+	};
+
 	enum class ATTACK_STATE_ENUM;
 	enum class COMMAND_TYPE;
 	enum class DEFAULT_OBJECT;

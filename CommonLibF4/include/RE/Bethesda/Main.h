@@ -5,11 +5,13 @@
 #include "RE/Bethesda/BSTEvent.h"
 #include "RE/Bethesda/BSTMessageQueue.h"
 #include "RE/Bethesda/BSTTuple.h"
+#include "RE/NetImmerse/NiSmartPointer.h"
 
 namespace RE
 {
 	class BSPackedTask;
 	class NiCamera;
+	class SceneGraph;
 	class TESPageCache;
 
 	struct PositionPlayerEvent;
@@ -42,6 +44,13 @@ namespace RE
 		{
 			using func_t = decltype(&Main::WorldRootCamera);
 			static REL::Relocation<func_t> func{ REL::ID(2228956) };
+			return func();
+		}
+		
+		[[nodiscard]] static NiPointer<SceneGraph> WorldRootNode()
+		{
+			using func_t = decltype(&Main::WorldRootNode);
+			static REL::Relocation<func_t> func{ REL::ID(2698065) };
 			return func();
 		}
 

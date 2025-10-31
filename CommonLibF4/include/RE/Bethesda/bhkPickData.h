@@ -4,21 +4,26 @@
 #include "RE/Bethesda/bhkCharacterController.h"
 #include "RE/Havok/hkVector4.h"
 #include "RE/Havok/hknpCollisionResult.h"
+#include "RE/Havok/hknpCollisionQuery.h"
+#include "RE/Havok/hknpCollisionQueryCollector.h"
 #include "RE/NetImmerse/NiPoint.h"
 
 namespace RE
 {
+	class hknpBSWorld;
+	class NiAVObject;
+	
 	struct bhkPickData
 	{
 	public:
+		enum class COLLECTOR_TYPE;
+		
 		bhkPickData()
 		{
 			typedef bhkPickData*           func_t(bhkPickData*);
 			static REL::Relocation<func_t> func{ REL::ID(526783) };
 			func(this);
 		}
-
-		F4_HEAP_REDEFINE_NEW(bhkPickData);
 
 		void SetStartEnd(const NiPoint3& start, const NiPoint3& end)
 		{
@@ -69,10 +74,10 @@ namespace RE
 			return func(this);
 		}
 
-		NiAVObject* GetNiAVObject()
+		NiAVObject* GetNiAVObject() const
 		{
 			using func_t = decltype(&bhkPickData::GetNiAVObject);
-			static REL::Relocation<func_t> func{ REL::ID(863406) };
+			static REL::Relocation<func_t> func{ REL::ID(2277763) };
 			return func(this);
 		}
 
@@ -83,24 +88,18 @@ namespace RE
 			return func(this);
 		}
 
+		F4_HEAP_REDEFINE_NEW(bhkPickData);
+
 		// members
-		std::uint64_t        field_0;
-		std::uint16_t        field_8;
-		CFilter              collisionFilter;
-		std::uint64_t        field_10;
-		std::uint32_t        field_18;
-		hkVector4f           rayOrigin;
-		hkVector4f           rayDest;
-		char                 gap40[16];
-		int                  field_50;
-		hknpCollisionResult  result;
-		hknpCollisionResult* field_C0;
-		std::uint64_t        collisionLayer;
-		__int64              collector;
-		int                  field_D8;
-		__int16              field_DC;
-		char                 field_DE;
-		char                 field_DF;
+		hknpRayCastQuery             castQuery;            // 00
+		hknpRayCastQueryResult       result;               // 60
+		hkRefPtr<hknpBSWorld>        castWorld;            // C0
+		std::uint64_t                customCollideLayers;  // C8
+		hknpCollisionQueryCollector* collector;            // D0
+		COLLECTOR_TYPE               collectorType;        // D8
+		bool                         incrementPickTime;    // DC
+		bool                         allowFailedPicks;     // DD
+		bool                         pickFailed;           // DE
 	};
 	static_assert(sizeof(bhkPickData) == 0xE0);
 };

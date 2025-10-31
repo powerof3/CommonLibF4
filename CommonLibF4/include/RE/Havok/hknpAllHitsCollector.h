@@ -16,8 +16,8 @@ namespace RE
 		hknpAllHitsCollector()
 		{
 			stl::emplace_vtable<hknpAllHitsCollector>(this);
-			hits._data = (hknpCollisionResult*)((uintptr_t)this + 0x30);
-			hits._capacityAndFlags = 0x8000000A;
+			hits.data = (hknpCollisionResult*)((uintptr_t)this + 0x30);
+			hits.capacityAndFlags = 0x8000000A;
 		}
 
 		// override (hknpCollisionQueryCollector)

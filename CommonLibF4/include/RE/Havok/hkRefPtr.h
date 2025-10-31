@@ -6,8 +6,8 @@ namespace RE
 	class hkRefPtr
 	{
 	public:
-		~hkRefPtr() noexcept {}  // intentional
-
-		T* _ptr;
+		// members
+		T* ptr;  // 00
 	};
+	static_assert(sizeof(hkRefPtr<void>) == 0x08);
 }

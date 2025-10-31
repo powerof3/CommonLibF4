@@ -15,6 +15,7 @@ namespace RE
 	class hkcdVertex;
 	class hknpShapeSignals;
 	class hkRefCountedProperties;
+	class hknpSolverInfo;
 	class hkTransformf;
 
 	template <class, class>
@@ -31,7 +32,6 @@ namespace RE
 	struct hknpShapeCollector;
 	struct hknpShapeKeyMask;
 	struct hknpShapeQueryInfo;
-	struct hknpSolverInfo;
 
 	struct hknpCollisionDispatchType
 	{

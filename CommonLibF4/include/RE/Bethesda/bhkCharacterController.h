@@ -30,8 +30,10 @@ namespace RE
 	class bhkNPCollisionObject;
 	class bhkPhysicsSystem;
 	class bhkWorld;
+	class CFilter;
 	class hknpBody;
 	class hknpShape;
+	class hknpBSWorld;
 
 	struct DamageImpactData;
 	struct MoveData;
@@ -64,16 +66,6 @@ namespace RE
 		NiPoint4  translation;
 	};
 	using hkTransform = hkTransformf;
-
-	class CFilter
-	{
-	public:
-		~CFilter() noexcept {}  // intentional
-
-		// members
-		std::uint32_t filter;  // 0
-	};
-	static_assert(sizeof(CFilter) == 0x4);
 
 	class hkStepInfo
 	{
@@ -121,10 +113,10 @@ namespace RE
 			func(this, from, cp);
 		}
 
-		static bhkNPCollisionObject* Getbhk(bhkWorld* world, hknpBodyId& bodyId)
+		static bhkNPCollisionObject* Getbhk(const hknpBSWorld* world, const hknpBodyId& bodyId)
 		{
 			using func_t = decltype(&bhkNPCollisionObject::Getbhk);
-			static REL::Relocation<func_t> func{ REL::ID(730034) };
+			static REL::Relocation<func_t> func{ REL::ID(2277919) };
 			return func(world, bodyId);
 		}
 

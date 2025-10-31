@@ -738,6 +738,13 @@ namespace RE
 			}
 		}
 
+		static TESObjectREFR* FindReferenceFor3D(const NiAVObject* a_object3D)
+		{
+			using func_t = decltype(&TESObjectREFR::FindReferenceFor3D);
+			static REL::Relocation<func_t> func{ REL::ID(2201082) };
+			return func(a_object3D);
+		}
+
 		[[nodiscard]] BGSLocation* GetCurrentLocation() const
 		{
 			using func_t = decltype(&TESObjectREFR::GetCurrentLocation);

@@ -6,7 +6,7 @@ namespace RE
 {
 	struct hknpBodyIdBaseDiscriminant;
 
-	struct hknpBodyId :
+	class hknpBodyId :
 		public hkHandle<std::uint32_t, 0x7FFF'FFFF, hknpBodyIdBaseDiscriminant>
 	{
 	public:

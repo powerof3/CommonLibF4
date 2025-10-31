@@ -8,41 +8,50 @@ namespace RE
 	class hkArrayBase
 	{
 	public:
-		using size_type = std::int32_t;
-		using value_type = T;
-		using pointer = value_type*;
-
-		pointer   _data;              // 00
-		size_type _size;              // 08
-		size_type _capacityAndFlags;  // 0C
+		// members
+		T*           data;              // 00
+		std::int32_t size;              // 08
+		std::int32_t capacityAndFlags;  // 0C
 	};
+	static_assert(sizeof(hkArrayBase<void>) == 0x10);
 
 	template <class T, class Allocator = hkContainerHeapAllocator>
 	class hkArray :
-		public hkArrayBase<T>  // 00
+		public hkArrayBase<T>
 	{
 	public:
 	};
+	static_assert(sizeof(hkArray<void>) == 0x10);
 
-	template <class T, std::uint32_t N, class Allocator = hkContainerHeapAllocator>
+	template <class T, std::size_t N, class Allocator = hkContainerHeapAllocator>
 	class hkInplaceArray :
-		public hkArray<T, Allocator>  // 00
+		public hkArray<T, Allocator>
 	{
 	public:
-		using value_type = T;
-
-	private:
-		value_type _buffer[N];  // 10
+		// members
+		T storage[N];  // 10
 	};
+	static_assert(sizeof(hkInplaceArray<std::byte, 32>) == 0x30);
 
-	template <class T, std::uint32_t N, class Allocator = hkContainerHeapAllocator>
-	class hkInplaceArrayAligned16
+	template <class T, std::size_t N, class Allocator = hkContainerHeapAllocator>
+	class hkInplaceArrayAligned16 :
+		public hkArray<T, Allocator>
 	{
 	public:
-		using value_type = T;
-
-	private:
-		std::int32_t _padding;                                    // 10
-		alignas(0x10) std::byte _buffer[N * sizeof(value_type)];  // 20
+		// members
+		std::byte    padding[0x10];           // 10
+		std::uint8_t storage[sizeof(T) * N];  // 20
 	};
+	static_assert(sizeof(hkInplaceArrayAligned16<void*, 24>) == 0xE0);
+
+	template <class T>
+	class hkLocalArray :
+		public hkArray<T>
+	{
+	public:
+		// members
+		T*           localMemory;      // 10
+		std::int32_t initialCapacity;  // 18
+	};
+	static_assert(sizeof(hkLocalArray<void>) == 0x20);
 }
