@@ -1,12 +1,14 @@
 #pragma once
 
 #include "RE/Bethesda/BSFixedString.h"
+#include "RE/Bethesda/BSResourceStreamParser.h"
 #include "RE/Bethesda/BSStringT.h"
 #include "RE/Bethesda/BSTEvent.h"
 #include "RE/Bethesda/BSTHashMap.h"
 #include "RE/Bethesda/BSTSingleton.h"
 #include "RE/Scaleform/GFx/GFx_Player.h"
 #include "RE/Scaleform/Kernel/SF_RefCount.h"
+#include "RE/Bethesda/Settings.h"
 
 namespace RE
 {
@@ -68,6 +70,28 @@ namespace RE
 		public Scaleform::GFx::Translator
 	{
 	public:
+		void AddTranslations(BSStreamParser<wchar_t>* a_parser)
+		{
+			using func_t = void (*)(BSScaleformTranslator*, BSStreamParser<wchar_t>*);
+			static REL::Relocation<func_t> func{ REL::ID(2295298) };
+			func(this, a_parser);
+		}
+
+		void AddTranslationsFile(const char* a_file)
+		{
+			BSResourceStreamParser  parserResource(a_file);
+			BSStreamParser<wchar_t> parser(&parserResource);
+			AddTranslations(&parser);
+		}
+
+		void AddTranslationsMod(const char* a_name)
+		{
+			const auto setting = GetINISetting("sLanguage:General");
+			const auto language = setting ? setting->GetString() : "EN";
+			const auto path = std::format("Interface\\Translations\\{}_{}.txt", a_name, language);
+			AddTranslationsFile(path.c_str());
+		}
+
 		// members
 		BSTranslator translator;  //20
 	};
@@ -87,6 +111,13 @@ namespace RE
 		{
 			static REL::Relocation<BSScaleformManager**> singleton{ REL::ID(2689600) };
 			return *singleton;
+		}
+
+		bool IsNameValid(const char* a_name)
+		{
+			using func_t = decltype(&BSScaleformManager::IsNameValid);
+			static REL::Relocation<func_t> func{ REL::ID(2287425) };
+			return func(this, a_name);
 		}
 
 		bool LoadMovie(

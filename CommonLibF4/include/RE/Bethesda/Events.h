@@ -125,7 +125,7 @@ namespace RE
 	public:
 		[[nodiscard]] static EventSource_t* GetEventSource()
 		{
-			static REL::Relocation<EventSource_t**> singleton{ REL::ID(421543) };
+			static REL::Relocation<EventSource_t**> singleton{ REL::ID(2707340) };
 			if (!*singleton) {
 				*singleton = new EventSource_t(&BSTGlobalEvent::GetSingleton()->eventSourceSDMKiller);
 			}
@@ -508,6 +508,22 @@ namespace RE
 	public:
 	};
 	static_assert(sizeof(HUDPerkVaultBoySwfDisplayEvent) == 0x20);
+
+	struct HUDSubtitleDisplayData
+	{
+	public:
+		// members
+		BSFixedStringCS speakerName;   // 00
+		BSFixedStringCS subtitleText;  // 08
+	};
+	static_assert(sizeof(HUDSubtitleDisplayData) == 0x10);
+
+	class HUDSubtitleDisplayEvent :
+		public BSTValueEvent<HUDSubtitleDisplayData>  // 00
+	{
+	public:
+	};
+	static_assert(sizeof(HUDSubtitleDisplayEvent) == 0x18);
 
 	class ShowingDialogueSpeechChallengeAnim :
 		public BSTValueEvent<bool>

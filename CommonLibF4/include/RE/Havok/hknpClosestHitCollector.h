@@ -15,9 +15,25 @@ namespace RE
 
 		hknpClosestHitCollector()
 		{
-			typedef hknpClosestHitCollector* func_t(hknpClosestHitCollector*);
-			static REL::Relocation<func_t>   func{ REL::ID(2188714) };
-			func(this);
+			this->hints = 0;
+			this->earlyOutThreshold.real = __m128{};
+			this->result.queryType.reset();
+			this->result.fraction.storage = 3.40282e38f;
+			this->result.position = NiPoint3();
+			this->result.normal = NiPoint3();
+			this->result.queryBodyInfo.bodyId.value = 0x7FFFFFFF;
+			this->result.queryBodyInfo.shapeKey.storage = static_cast<std::uint32_t>(-1);
+			this->result.queryBodyInfo.shapeMaterialId.value = static_cast<std::uint16_t>(-1);
+			this->result.queryBodyInfo.shapeCollisionFilterInfo.storage = 0;
+			this->result.queryBodyInfo.shapeUserData.storage = 0;
+			this->result.hitBodyInfo.bodyId.value = 0x7FFFFFFF;
+			this->result.hitBodyInfo.shapeKey.storage = static_cast<std::uint32_t>(-1);
+			this->result.hitBodyInfo.shapeMaterialId.value = static_cast<std::uint16_t>(-1);
+			this->result.hitBodyInfo.shapeCollisionFilterInfo.storage = 0;
+			this->result.hitBodyInfo.shapeUserData.storage = 0;
+			this->hasHit.b = 0;
+
+			stl::emplace_vtable<hknpClosestHitCollector>(this);
 		}
 
 		// override (hknpCollisionQueryCollector)

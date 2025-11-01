@@ -3,10 +3,10 @@
 #include "RE/Havok/hkBaseTypes.h"
 #include "RE/Havok/hkcdRay.h"
 #include "RE/Havok/hknpMaterialId.h"
+#include "RE/Bethesda/CFilter.h"
 
 namespace RE
 {
-	class CFilter;
 	class hknpCollisionFilter;
 
 	struct hknpQueryFilterData

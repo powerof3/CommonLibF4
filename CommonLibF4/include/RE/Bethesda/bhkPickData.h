@@ -21,14 +21,21 @@ namespace RE
 		bhkPickData()
 		{
 			typedef bhkPickData*           func_t(bhkPickData*);
-			static REL::Relocation<func_t> func{ REL::ID(526783) };
+			static REL::Relocation<func_t> func{ REL::ID(2230668) };
+			func(this);
+		}
+
+		~bhkPickData()
+		{
+			typedef void                    func_t(bhkPickData*);
+			static REL::Relocation<func_t*> func{ REL::ID(2228517) };
 			func(this);
 		}
 
 		void SetStartEnd(const NiPoint3& start, const NiPoint3& end)
 		{
 			using func_t = decltype(&bhkPickData::SetStartEnd);
-			static REL::Relocation<func_t> func{ REL::ID(747470) };
+			static REL::Relocation<func_t> func{ REL::ID(2236622) };
 			return func(this, start, end);
 		}
 
@@ -39,17 +46,17 @@ namespace RE
 			return func(this);
 		}
 
-		bool HasHit()
+		bool HasHit() const
 		{
 			using func_t = decltype(&bhkPickData::HasHit);
-			static REL::Relocation<func_t> func{ REL::ID(1181584) };
+			static REL::Relocation<func_t> func{ REL::ID(2277770) };
 			return func(this);
 		}
 
-		float GetHitFraction()
+		float GetHitFraction() const
 		{
 			using func_t = decltype(&bhkPickData::GetHitFraction);
-			static REL::Relocation<func_t> func{ REL::ID(476687) };
+			static REL::Relocation<func_t> func{ REL::ID(2277771) };
 			return func(this);
 		}
 
@@ -84,7 +91,7 @@ namespace RE
 		hknpBody* GetBody()
 		{
 			using func_t = decltype(&bhkPickData::GetBody);
-			static REL::Relocation<func_t> func{ REL::ID(1223055) };
+			static REL::Relocation<func_t> func{ REL::ID(2277762) };
 			return func(this);
 		}
 

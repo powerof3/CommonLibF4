@@ -11,8 +11,10 @@ set(SOURCES
 	include/RE/Bethesda/ActiveEffect.h
 	include/RE/Bethesda/Actor.h
 	include/RE/Bethesda/ActorValueInfo.h
+	include/RE/Bethesda/AnimationSpeedInformationTypes.h
 	include/RE/Bethesda/Archive2.h
 	include/RE/Bethesda/Atomic.h
+	include/RE/Bethesda/BGSAnimationSequencer.h
 	include/RE/Bethesda/BGSBaseAliases.h
 	include/RE/Bethesda/BGSBodyPartDefs.h
 	include/RE/Bethesda/BGSCharacterMorph.h
@@ -57,6 +59,7 @@ set(SOURCES
 	include/RE/Bethesda/BSMTAManager.h
 	include/RE/Bethesda/BSMemStorage.h
 	include/RE/Bethesda/BSModelDB.h
+	include/RE/Bethesda/BSPathing.h
 	include/RE/Bethesda/BSPointerHandle.h
 	include/RE/Bethesda/BSPreCulledObjects.h
 	include/RE/Bethesda/BSRandom.h
@@ -71,6 +74,7 @@ set(SOURCES
 	include/RE/Bethesda/BSResource/Stream.h
 	include/RE/Bethesda/BSResource/StreamBase.h
 	include/RE/Bethesda/BSResourceNiBinaryStream.h
+	include/RE/Bethesda/BSResourceStreamParser.h
 	include/RE/Bethesda/BSScaleformManager.h
 	include/RE/Bethesda/BSScript.h
 	include/RE/Bethesda/BSScript/Array.h
@@ -198,6 +202,7 @@ set(SOURCES
 	include/RE/Bethesda/MenuTopicManager.h
 	include/RE/Bethesda/MessageMenuManager.h
 	include/RE/Bethesda/Movement.h
+	include/RE/Bethesda/MovementLargeDelta.h
 	include/RE/Bethesda/NavMesh.h
 	include/RE/Bethesda/NavMeshInfoMap.h
 	include/RE/Bethesda/PipboyDataGroup.h
@@ -219,6 +224,7 @@ set(SOURCES
 	include/RE/Bethesda/Settings.h
 	include/RE/Bethesda/Sky.h
 	include/RE/Bethesda/SplineUtils.h
+	include/RE/Bethesda/SubtitleManager.h
 	include/RE/Bethesda/TES.h
 	include/RE/Bethesda/TESBoundAnimObjects.h
 	include/RE/Bethesda/TESBoundObjects.h
@@ -247,6 +253,7 @@ set(SOURCES
 	include/RE/Bethesda/bhkCharProxyManager.h
 	include/RE/Bethesda/bhkCharRigidBodyManager.h
 	include/RE/Bethesda/bhkCharacterController.h
+	include/RE/Bethesda/bhkCollisionQueryResultHandle.h
 	include/RE/Bethesda/bhkIWorldStepListener.h
 	include/RE/Bethesda/bhkPickData.h
 	include/RE/Fallout.h

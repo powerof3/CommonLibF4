@@ -22,10 +22,12 @@ namespace RE
 	public:
 		~hkPadSpu() noexcept {}  // NOLINT(modernize-use-equals-default)
 
-		void operator=(T val) { storage = val; }
-		T    val() const { return storage; }
-		T&   operator*() const { return &storage; }
-		T*   operator->() const { return &storage; }
+		void     operator=(T val) { storage = val; }
+		T        val() const { return storage; }
+		T&       operator*() { return &storage; }
+		const T& operator*() const { return &storage; }
+		T*       operator->() { return &storage; }
+		const T* operator->() const { return &storage; }
 
 		// members
 		T storage;

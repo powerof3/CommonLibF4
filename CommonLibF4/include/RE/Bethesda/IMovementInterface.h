@@ -79,6 +79,24 @@ namespace RE
 	};
 	static_assert(sizeof(MovementData) == 0x30);
 
+	struct MovementTweenerOutputData
+	{
+	public:
+		// members
+		NiPoint3 velocity; // 00
+		NiPoint3 rotationSpeed; // 0C
+	};
+	static_assert(sizeof(MovementTweenerOutputData) == 0x18);
+	
+	struct ActorMovementData
+	{
+	public:
+		// members
+		MovementData              handlerData; // 00
+		MovementTweenerOutputData tweenerData; // 30
+	};
+	static_assert(sizeof(ActorMovementData) == 0x50);
+
 	struct PlayerControlsMovementData :
 		public MovementData  // 00
 	{

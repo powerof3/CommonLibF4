@@ -55,6 +55,10 @@ namespace RE
 			};
 		};
 
+		CFilter(std::uint32_t a_filter = 0) :
+			filter(a_filter)
+		{}
+
 		COL_LAYER     GetCollisionLayer() const { return static_cast<COL_LAYER>(filter & Flags::kLayerMask); }
 		BIPED_PART    GetBipedPart() const { return static_cast<BIPED_PART>((filter >> 8) & Flags::kPartMask); }
 		bool          QNoCollision() const { return (filter >> 14) & 1; }

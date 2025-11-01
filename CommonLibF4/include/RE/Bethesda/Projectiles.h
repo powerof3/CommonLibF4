@@ -6,6 +6,7 @@
 #include "RE/Bethesda/BSTEvent.h"
 #include "RE/Bethesda/CELLJobs.h"
 #include "RE/Bethesda/TESObjectREFRs.h"
+#include "RE/Bethesda/bhkCollisionQueryResultHandle.h"
 #include "RE/NetImmerse/NiPoint.h"
 #include "RE/NetImmerse/NiSmartPointer.h"
 #include "RE/NetImmerse/NiTransform.h"
@@ -37,14 +38,6 @@ namespace RE
 	class QueuedFile;
 
 	struct BeamProjectileImpactEvent;
-
-	struct bhkCollisionQueryResultHandle
-	{
-	public:
-		// members
-		std::uint64_t data;  // 0
-	};
-	static_assert(sizeof(bhkCollisionQueryResultHandle) == 0x8);
 
 	class __declspec(novtable) Projectile :
 		public TESObjectREFR  // 000

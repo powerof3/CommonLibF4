@@ -18,21 +18,10 @@ namespace RE
 		inline static constexpr auto RTTI = { RTTI::BSResourceNiBinaryStream };
 		inline static constexpr auto VTABLE = { VTABLE::BSResourceNiBinaryStream };
 
-		struct BufferType
-		{
-		public:
-			// BSResource::Stream &stream; //00
-			// std::uint64_t unk10;
-			// std::uint64_t unk18;
-			// std::uint32_t unk20;
-			// std::uint32_t gap24;
-			// std::uint64_t unk28;
-			// std::uint32_t unk30;
-		};
+		struct BufferType;
 
 		BSResourceNiBinaryStream();
-		BSResourceNiBinaryStream(const char* a_fileName);
-		BSResourceNiBinaryStream(const std::string& a_fileName);
+		BSResourceNiBinaryStream(const char* a_file, bool a_writeable = false, BSResource::Location* a_optionalStart = nullptr, bool a_fullReadHint = false);
 		~BSResourceNiBinaryStream() override;  // 00
 
 		// override (NiBinaryStream)

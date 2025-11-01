@@ -47,11 +47,10 @@ namespace RE
 			return func();
 		}
 
-		[[nodiscard]] static NiPointer<SceneGraph> WorldRootNode()
+		[[nodiscard]] static SceneGraph* WorldRootNode()
 		{
-			using func_t = decltype(&Main::WorldRootNode);
-			static REL::Relocation<func_t> func{ REL::ID(2698065) };
-			return func();
+			static REL::Relocation<NiPointer<SceneGraph>*> nodePtr{ REL::ID(2698065) };
+			return nodePtr->get();
 		}
 
 		[[nodiscard]] static bool QGameSystemsShouldUpdate()
