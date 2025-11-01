@@ -18,7 +18,7 @@ namespace RE
 
 		kTotal
 	};
-	
+
 	class SubtitleInfo
 	{
 	public:

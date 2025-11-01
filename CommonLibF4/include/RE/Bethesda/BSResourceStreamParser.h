@@ -41,7 +41,7 @@ namespace RE
 	};
 	static_assert(sizeof(BSStreamParser<char>) == 0x118);
 	static_assert(sizeof(BSStreamParser<wchar_t>) == 0x218);
-	
+
 	class BSResourceStreamParser :
 		public BSResourceNiBinaryStream,
 		public BSStreamParserData

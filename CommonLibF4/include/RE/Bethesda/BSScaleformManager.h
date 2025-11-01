@@ -6,9 +6,9 @@
 #include "RE/Bethesda/BSTEvent.h"
 #include "RE/Bethesda/BSTHashMap.h"
 #include "RE/Bethesda/BSTSingleton.h"
+#include "RE/Bethesda/Settings.h"
 #include "RE/Scaleform/GFx/GFx_Player.h"
 #include "RE/Scaleform/Kernel/SF_RefCount.h"
-#include "RE/Bethesda/Settings.h"
 
 namespace RE
 {
