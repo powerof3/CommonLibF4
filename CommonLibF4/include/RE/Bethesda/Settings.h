@@ -409,4 +409,59 @@ namespace RE
 		}
 		return setting;
 	}
+
+	namespace literals
+	{
+		namespace detail
+		{
+			template <class Collection, stl::nttp::zstring S>
+			inline auto get_setting_value()
+			{
+				static RE::Setting* setting = nullptr;
+				if (!setting) {
+					if (auto collection = Collection::GetSingleton()) {
+						setting = collection->GetSetting(S.data());
+					}
+				}
+
+				if constexpr (S.front() == 'b') {
+					return setting ? std::optional(setting->GetBinary()) : std::nullopt;
+				} else if constexpr (S.front() == 'c') {
+					return setting ? std::optional(setting->GetChar()) : std::nullopt;
+				} else if constexpr (S.front() == 'u') {
+					return setting ? std::optional(setting->GetUChar()) : std::nullopt;
+				} else if constexpr (S.front() == 'f') {
+					return setting ? std::optional(setting->GetFloat()) : std::nullopt;
+				} else if constexpr (S.front() == 'i') {
+					return setting ? std::optional(setting->GetInt()) : std::nullopt;
+				} else if constexpr (S.front() == 'r') {
+					return setting ? std::optional(setting->GetRGB()) : std::nullopt;
+				} else if constexpr (S.front() == 'a') {
+					return setting ? std::optional(setting->GetRGBA()) : std::nullopt;
+				} else if constexpr (S.front() == 's') {
+					return setting ? std::optional(setting->GetString()) : std::nullopt;
+				} else if constexpr (S.front() == 'u') {
+					return setting ? std::optional(setting->GetUInt()) : std::nullopt;
+				}
+			}
+		}
+
+		template <stl::nttp::zstring S>
+		inline auto operator""_ini()
+		{
+			return detail::get_setting_value<INISettingCollection, S>();
+		}
+
+		template <stl::nttp::zstring S>
+		inline auto operator""_pref()
+		{
+			return detail::get_setting_value<INIPrefSettingCollection, S>();
+		}
+
+		template <stl::nttp::zstring S>
+		inline auto operator""_gs()
+		{
+			return detail::get_setting_value<GameSettingCollection, S>();
+		}
+	}
 }

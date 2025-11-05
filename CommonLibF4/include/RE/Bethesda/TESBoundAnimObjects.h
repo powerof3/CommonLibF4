@@ -456,6 +456,13 @@ namespace RE
 			return func(this);
 		}
 
+		[[nodiscard]] const char* GetShortName() noexcept
+		{
+			using func_t = decltype(&TESNPC::GetShortName);
+			static REL::Relocation<func_t> func{ REL::ID(2207405) };
+			return func(this);
+		}
+
 		[[nodiscard]] TESSpellList::SpellData* GetSpellList()
 		{
 			if (!spellData) {

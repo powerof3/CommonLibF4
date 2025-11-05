@@ -4,6 +4,7 @@
 #include "RE/Bethesda/BSTEvent.h"
 #include "RE/Bethesda/BSTList.h"
 #include "RE/Bethesda/BSTTuple.h"
+#include "RE/Bethesda/bhkPickData.h"
 #include "RE/NetImmerse/NiPoint.h"
 #include "RE/NetImmerse/NiSmartPointer.h"
 
@@ -62,6 +63,13 @@ namespace RE
 		{
 			static REL::Relocation<TES**> singleton{ REL::ID(2698044) };
 			return *singleton;
+		}
+
+		NiAVObject* Pick(bhkPickData& a_result)
+		{
+			using func_t = decltype(&TES::Pick);
+			static REL::Relocation<func_t> func{ REL::ID(2214545) };
+			return func(this, a_result);
 		}
 
 		// members

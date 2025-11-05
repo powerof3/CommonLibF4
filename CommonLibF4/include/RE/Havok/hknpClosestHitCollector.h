@@ -47,7 +47,7 @@ namespace RE
 		void AddHit(const hknpCollisionResult& a_hit) override  // 02
 		{
 			using func_t = decltype(&hknpClosestHitCollector::AddHit);
-			static REL::Relocation<func_t> func{ REL::ID(2188722) };
+			static REL::Relocation<func_t> func{ REL::ID(2255546) };
 			return func(this, a_hit);
 		}
 

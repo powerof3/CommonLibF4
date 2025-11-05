@@ -433,6 +433,29 @@ namespace RE
 	};
 	static_assert(sizeof(PlayerAmmoCountEvent) == 0x0C);
 
+	enum class CrosshairMode
+	{
+
+	};
+
+	class PlayerCrosshairModeEvent :
+		public BSTValueEvent<CrosshairMode>
+	{
+	private:
+		using EventSource_t = BSTGlobalEvent::EventSource<PlayerCrosshairModeEvent>;
+
+	public:
+		[[nodiscard]] static EventSource_t* GetEventSource()
+		{
+			static REL::Relocation<EventSource_t**> singleton{ REL::ID(2694517) };
+			if (!*singleton) {
+				*singleton = new EventSource_t(&BSTGlobalEvent::GetSingleton()->eventSourceSDMKiller);
+			}
+			return *singleton;
+		}
+	};
+	static_assert(sizeof(PlayerCrosshairModeEvent) == 0x08);
+
 	class PlayerWeaponReloadEvent :
 		public BSTValueEvent<bool>
 	{
@@ -512,6 +535,9 @@ namespace RE
 	struct HUDSubtitleDisplayData
 	{
 	public:
+		bool operator==(const HUDSubtitleDisplayData& a_rhs) { return speakerName == a_rhs.speakerName && subtitleText == a_rhs.subtitleText; }
+		bool operator!=(const HUDSubtitleDisplayData& a_rhs) { return !operator==(a_rhs); }
+		
 		// members
 		BSFixedStringCS speakerName;   // 00
 		BSFixedStringCS subtitleText;  // 08
@@ -893,4 +919,16 @@ namespace RE
 			return singleton.get();
 		}
 	};
+
+	struct TESLoadGameEvent
+	{
+	public:
+		[[nodiscard]] static BSTEventSource<TESLoadGameEvent>* GetEventSource()
+		{
+			using func_t = decltype(&TESLoadGameEvent::GetEventSource);
+			static REL::Relocation<func_t> func{ REL::ID(2201848) };
+			return func();
+		}
+	};
+	static_assert(sizeof(TESLoadGameEvent) == 0x1);
 }

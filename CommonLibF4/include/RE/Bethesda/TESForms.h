@@ -1549,7 +1549,7 @@ namespace RE
 		[[nodiscard]] NiAVObject* Pick(bhkPickData& pd)
 		{
 			using func_t = decltype(&TESObjectCELL::Pick);
-			static REL::Relocation<func_t> func{ REL::ID(2200263) };
+			static REL::Relocation<func_t> func{ REL::ID(2192098) };
 			return func(this, pd);
 		}
 
@@ -1572,7 +1572,7 @@ namespace RE
 			void*          cellData;
 			EXTERIOR_DATA* cellDataExterior;
 			INTERIOR_DATA* cellDataInterior;
-		};                                                                               // 50
+		};  // 50
 		TESObjectLAND*                                                     cellLand;     // 58
 		float                                                              waterHeight;  // 60
 		NavMeshArray*                                                      navMeshes;    // 68
@@ -1584,7 +1584,7 @@ namespace RE
 		{
 			TESWorldSpace* worldSpace;
 			std::uint32_t  tempDataOffset;
-		};                                          // C8
+		};  // C8
 		LOADED_CELL_DATA*    loadedData;            // D0
 		BGSLightingTemplate* lightingTemplate;      // D8
 		void*                visibilityData;        // E0 - TODO
@@ -1753,25 +1753,27 @@ namespace RE
 			kInfoGroup = (1 << 6),
 		};
 
-		enum CHARISMA_CHALLENGE_DIFFICULTY : std::uint32_t
+		enum class CHARISMA_CHALLENGE_DIFFICULTY
 		{
-			CC_CHALLENGE_NONE = 0x0,
-			CC_CHALLENGE_EASY = 0x1,
-			CC_CHALLENGE_MEDIUM = 0x2,
-			CC_CHALLENGE_HARD = 0x3,
-			CC_CHALLENGE_ALWAYS_SUCCEEDS = 0x4,
-			CC_CHALLENGE_EASY_REPEATABLE = 0x5,
-			CC_CHALLENGE_MEDIUM_REPEATABLE = 0x6,
-			CC_CHALLENGE_HARD_REPEATABLE = 0x7,
-			CC_CHALLENGE_COUNT = 0x8,
+			kNone = 0,
+			kEasy = 1,
+			kMedium = 2,
+			kHard = 3,
+			kAlwaysSucceeds = 4,
+			kEasyRepeatable = 5,
+			kMediumRepeatable = 6,
+			kHardRepeatable = 7,
+
+			kTotal = 8
 		};
 
-		enum CHARISMA_CHALLENGE_SUCCESS : std::uint32_t
+		enum class CHARISMA_CHALLENGE_SUCCESS
 		{
-			CC_SUCCESS_NONE = 0xFFFFFFFF,
-			CC_SUCCESS_FAIL = 0x0,
-			CC_SUCCESS_SUCCEED = 0x1,
-			CC_SUCCESS_COUNT = 0x2,
+			kNone = -1,
+			kFail = 0,
+			kSucceed = 1,
+
+			kTotal = 8
 		};
 
 		// Returns nullptr if no parent.
@@ -1793,6 +1795,13 @@ namespace RE
 		{
 			using func_t = decltype(&TESTopicInfo::GetSuccessLevel);
 			static REL::Relocation<func_t> func{ REL::ID(2208444) };
+			return func(this);
+		}
+
+		TESActorBase* GetSpeaker()
+		{
+			using func_t = decltype(&TESTopicInfo::GetSpeaker);
+			static REL::Relocation<func_t> func{ REL::ID(2208449) };
 			return func(this);
 		}
 
@@ -3128,7 +3137,7 @@ namespace RE
 		{
 			std::uint32_t color;
 			float         remappingIndex;
-		};                         // 30
+		};  // 30
 		TESCondition  conditions;  // 38
 		std::uint32_t flags;       // 40
 	};

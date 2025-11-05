@@ -1409,7 +1409,7 @@ namespace RE
 		std::uint32_t GetCurrentCollisionGroup()
 		{
 			using func_t = decltype(&Actor::GetCurrentCollisionGroup);
-			static REL::Relocation<func_t> func{ REL::ID(410500) };
+			static REL::Relocation<func_t> func{ REL::ID(2229993) };
 			return func(this);
 		}
 
