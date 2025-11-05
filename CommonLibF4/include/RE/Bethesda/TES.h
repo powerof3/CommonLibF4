@@ -68,7 +68,7 @@ namespace RE
 		NiAVObject* Pick(bhkPickData& a_result)
 		{
 			using func_t = decltype(&TES::Pick);
-			static REL::Relocation<func_t> func{ REL::ID(2214545) };
+			static REL::Relocation<func_t> func{ REL::ID(2192098) };
 			return func(this, a_result);
 		}
 
