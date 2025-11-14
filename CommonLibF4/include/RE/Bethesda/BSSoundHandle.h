@@ -3,7 +3,7 @@
 namespace RE
 {
 	class BSISoundOutputModel;
-	
+
 	class BSSoundHandle
 	{
 	public:

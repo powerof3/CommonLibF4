@@ -83,7 +83,7 @@ namespace RE
 			static REL::Relocation<func_t> func{ REL::ID(2267103) };
 			return func(this, a_handle, a_file, a_usageFlags, a_priority);
 		}
-		
+
 		void GetSoundHandleByName(BSSoundHandle& a_handle, const char* a_soundName, float a_distance, std::uint32_t a_usageFlags, BSISoundDescriptor::ExtraResolutionData* a_data)
 		{
 			using func_t = decltype(&BSAudioManager::GetSoundHandleByName);

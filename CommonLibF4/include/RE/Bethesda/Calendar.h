@@ -40,7 +40,7 @@ namespace RE
 			};
 		};
 		using Day = Days::Day;
-		
+
 		struct Months
 		{
 			enum Month
