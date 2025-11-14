@@ -215,6 +215,7 @@ set(SOURCES
 	include/RE/Bethesda/PowerUtils.h
 	include/RE/Bethesda/ProcessLists.h
 	include/RE/Bethesda/Projectiles.h
+	include/RE/Bethesda/REFREventCallbacks.h
 	include/RE/Bethesda/ReferenceEffectController.h
 	include/RE/Bethesda/SCRIPT_OUTPUT.h
 	include/RE/Bethesda/SDirectory2.h

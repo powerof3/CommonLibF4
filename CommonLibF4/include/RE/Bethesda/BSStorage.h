@@ -2,6 +2,7 @@
 
 #include "RE/Bethesda/BSTSmartPointer.h"
 #include "RE/Bethesda/MemoryManager.h"
+
 namespace RE
 {
 	namespace BSStorageDefs

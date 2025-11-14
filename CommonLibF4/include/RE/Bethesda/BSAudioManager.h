@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RE/Bethesda/BSFixedString.h"
+#include "RE/Bethesda/BSResource/BSResourceEnums.h"
 #include "RE/Bethesda/BSTArray.h"
 #include "RE/Bethesda/BSTHashMap.h"
 #include "RE/Bethesda/BSTList.h"
@@ -72,14 +73,21 @@ namespace RE
 
 		[[nodiscard]] static BSAudioManager* GetSingleton()
 		{
-			static REL::Relocation<BSAudioManager**> singleton{ REL::ID(1321158) };
+			static REL::Relocation<BSAudioManager**> singleton{ REL::ID(2703058) };
 			return *singleton;
 		}
 
+		void GetSoundHandleByFile(BSSoundHandle& a_handle, const BSResource::ID& a_file, std::uint32_t a_usageFlags, std::uint8_t a_priority)
+		{
+			using func_t = decltype(&BSAudioManager::GetSoundHandleByFile);
+			static REL::Relocation<func_t> func{ REL::ID(2267103) };
+			return func(this, a_handle, a_file, a_usageFlags, a_priority);
+		}
+		
 		void GetSoundHandleByName(BSSoundHandle& a_handle, const char* a_soundName, float a_distance, std::uint32_t a_usageFlags, BSISoundDescriptor::ExtraResolutionData* a_data)
 		{
 			using func_t = decltype(&BSAudioManager::GetSoundHandleByName);
-			static REL::Relocation<func_t> func{ REL::ID(196484) };
+			static REL::Relocation<func_t> func{ REL::ID(2267105) };
 			return func(this, a_handle, a_soundName, a_distance, a_usageFlags, a_data);
 		}
 

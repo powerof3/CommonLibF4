@@ -39,6 +39,13 @@ namespace RE::BSResource
 	public:
 		[[nodiscard]] bool operator==(const ID&) const noexcept = default;
 
+		void GenerateFromPath(const char* a_path)
+		{
+			using func_t = decltype(&ID::GenerateFromPath);
+			static REL::Relocation<func_t> func{ REL::ID(2269259) };
+			return func(this, a_path);
+		}
+
 		// members
 		std::uint32_t dir = 0;  // 8
 	};

@@ -22,6 +22,7 @@
 #include "RE/Bethesda/Events.h"
 #include "RE/Bethesda/ImageSpaceData.h"
 #include "RE/Bethesda/InventoryUserUIUtils.h"
+#include "RE/Bethesda/REFREventCallbacks.h"
 #include "RE/Bethesda/SWFToCodeFunctionHandler.h"
 #include "RE/Bethesda/SendHUDMessage.h"
 #include "RE/Bethesda/TESForms.h"
@@ -1771,7 +1772,7 @@ namespace RE
 			{
 				BGSMod::Attachment::Mod* mod;
 				TESBoundObject*          object;
-			};                                                                              // 00
+			};  // 00
 			const BGSConstructibleObject*                                   recipe;         // 08
 			BSTArray<BSTTuple<TESForm*, BGSTypedFormValuePair::SharedVal>>* requiredItems;  // 10
 			BSTArray<BSTTuple<BGSPerk*, std::uint32_t>>                     requiredPerks;  // 18
@@ -2301,26 +2302,6 @@ namespace RE
 		BSTArray<BSFixedString> overridingMenus;  // E0
 	};
 	static_assert(sizeof(SitWaitMenu) == 0xF8);
-
-	namespace REFREventCallbacks
-	{
-		class IEventCallback :
-			public BSIntrusiveRefCounted  // 00
-		{
-		public:
-			static constexpr auto RTTI{ RTTI::REFREventCallbacks__IEventCallback };
-			static constexpr auto VTABLE{ VTABLE::REFREventCallbacks__IEventCallback };
-
-			virtual ~IEventCallback();  // 00
-
-			// add
-			virtual void                 operator()() = 0;                  // 01
-			virtual bool                 Save(BSStorage& a_storage);        // 02
-			virtual const BSFixedString* GetType() = 0;                     // 03
-			virtual bool                 Load(const BSStorage& a_storage);  // 04
-		};
-		static_assert(sizeof(IEventCallback) == 0x10);
-	}
 
 	class __declspec(novtable) TerminalMenu :
 		public GameMenuBase  // 00

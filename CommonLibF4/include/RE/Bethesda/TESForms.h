@@ -43,6 +43,7 @@ namespace RE
 	class BGSComponent;
 	class BGSTextureSet;
 	class BGSMenuIcon;
+	class DialogueResponse;
 	class TESGlobal;
 	class BGSDamageType;
 	class TESClass;
@@ -826,6 +827,17 @@ namespace RE
 			fileIndex += file->smallFileCompileIndex << ((1 * 8) + 4);
 
 			return formID & ~fileIndex;
+		}
+
+		[[nodiscard]] const char* GetName() const
+		{
+			const auto fullName = As<TESFullName>();
+			if (fullName) {
+				const auto str = fullName->GetFullName();
+				return str ? str : "";
+			} else {
+				return "";
+			}
 		}
 
 		[[nodiscard]] bool Is(ENUM_FORM_ID a_type) const noexcept { return GetFormType() == a_type; }
@@ -1645,6 +1657,46 @@ namespace RE
 	};
 	static_assert(sizeof(DIALOGUE_DATA) == 0x4);
 
+	class DialogueResponse
+	{
+	public:
+		// members
+		BSFixedStringCS         text;              // 00
+		BGSKeyword*             animFaceArchType;  // 08
+		std::uint16_t           percent;           // 10
+		BSFixedString           voice;             // 18
+		TESIdleForm*            speakerIdle;       // 20
+		TESIdleForm*            listenIdle;        // 28
+		BGSSoundDescriptorForm* voiceSound;        // 30
+		bool                    useEmotion;        // 38
+		bool                    soundLip;          // 39
+		bool                    endOnSceneEnd;     // 3A
+	};
+	static_assert(sizeof(DialogueResponse) == 0x40);
+
+	class DialogueItem
+	{
+	public:
+		~DialogueItem() = default;
+
+		DialogueResponse* GetCurrentResponse()
+		{
+			return currentResponse < responses.size() ? responses[currentResponse] : nullptr;
+		}
+
+		// members
+		BSTArray<DialogueResponse*> responses{};                                        // 00
+		TESTopicInfo*               info{};                                             // 18
+		TESTopic*                   topic{};                                            // 20
+		TESQuest*                   quest{};                                            // 28
+		TESObjectREFR*              speaker{};                                          // 30
+		std::uint32_t               currentResponse{ static_cast<std::uint32_t>(-1) };  // 38
+		bool                        endResponse{ false };                               // 3C
+		bool                        canSkip{ false };                                   // 3D
+		bool                        subtitle{ false };                                  // 3E
+	};
+	static_assert(sizeof(DialogueItem) == 0x40);
+
 	class __declspec(novtable) TESTopic :
 		public TESForm,     // 00
 		public TESFullName  // 20
@@ -1655,6 +1707,19 @@ namespace RE
 		static constexpr auto FORM_ID{ ENUM_FORM_ID::kDIAL };
 
 		struct InfoTree;
+
+		bool InitDialogueItem(
+			DialogueItem&                a_outItem,
+			TESObjectREFR*               a_speaker,
+			TESObjectREFR*               a_target,
+			TESTopicInfo*                a_info,
+			TESTopic*                    a_previousTopic,
+			BSSimpleList<DialogueItem*>* a_conversationList = nullptr)
+		{
+			using func_t = decltype(&TESTopic::InitDialogueItem);
+			static REL::Relocation<func_t> func{ REL::ID(2208360) };
+			return func(this, a_outItem, a_speaker, a_target, a_info, a_previousTopic, a_conversationList);
+		}
 
 		// members
 		DIALOGUE_DATA      data;                     // 30

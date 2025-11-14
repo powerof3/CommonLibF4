@@ -4,6 +4,7 @@
 #include "RE/Bethesda/BSPointerHandle.h"
 #include "RE/Bethesda/BSTArray.h"
 #include "RE/Bethesda/BSTEvent.h"
+#include "RE/Bethesda/REFREventCallbacks.h"
 #include "RE/Bethesda/TESObjectREFRs.h"
 #include "RE/Bethesda/UserEvents.h"
 #include "RE/NetImmerse/NiMatrix3.h"
@@ -537,7 +538,7 @@ namespace RE
 	public:
 		bool operator==(const HUDSubtitleDisplayData& a_rhs) { return speakerName == a_rhs.speakerName && subtitleText == a_rhs.subtitleText; }
 		bool operator!=(const HUDSubtitleDisplayData& a_rhs) { return !operator==(a_rhs); }
-		
+
 		// members
 		BSFixedStringCS speakerName;   // 00
 		BSFixedStringCS subtitleText;  // 08
@@ -931,4 +932,28 @@ namespace RE
 		}
 	};
 	static_assert(sizeof(TESLoadGameEvent) == 0x1);
+
+	struct TESTopicInfoEvent
+	{
+		enum class TopicInfoEventType
+		{
+			kTopicBegin = 0,
+			kTopicEnd = 1,
+		};
+
+		[[nodiscard]] static BSTEventSource<TESTopicInfoEvent>* GetEventSource()
+		{
+			using func_t = decltype(&TESTopicInfoEvent::GetEventSource);
+			static REL::Relocation<func_t> func{ REL::ID(2201875) };
+			return func();
+		}
+
+		// members
+		NiPointer<TESObjectREFR>                            speakerRef;       // 00
+		BSTSmartPointer<REFREventCallbacks::IEventCallback> callback;         // 08
+		std::uint32_t                                       topicInfoFormID;  // 10
+		TESTopicInfoEvent::TopicInfoEventType               type;             // 14
+		std::uint16_t                                       stage;            // 18
+	};
+	static_assert(sizeof(TESTopicInfoEvent) == 0x20);
 }
