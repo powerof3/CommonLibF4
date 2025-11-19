@@ -726,8 +726,8 @@ namespace RE
 				BSTHashMap<std::uint32_t, TESForm*>*,
 				std::reference_wrapper<BSReadWriteLock>>
 		{
-			static REL::Relocation<BSTHashMap<std::uint32_t, TESForm*>**> allForms{ REL::ID(2689178) };
-			static REL::Relocation<BSReadWriteLock*>                      allFormsMapLock{ REL::ID(2689189) };
+			static REL::Relocation<BSTHashMap<std::uint32_t, TESForm*>**> allForms{ REL::ID(4796465) };
+			static REL::Relocation<BSReadWriteLock*>                      allFormsMapLock{ REL::ID(4796476) };
 			return { *allForms, *allFormsMapLock };
 		}
 
@@ -736,8 +736,8 @@ namespace RE
 				BSTHashMap<BSFixedString, TESForm*>*,
 				std::reference_wrapper<BSReadWriteLock>>
 		{
-			static REL::Relocation<BSTHashMap<BSFixedString, TESForm*>**> allFormsByEditorID{ REL::ID(2689179) };
-			static REL::Relocation<BSReadWriteLock*>                      allFormsEditorIDMapLock{ REL::ID(2689190) };
+			static REL::Relocation<BSTHashMap<BSFixedString, TESForm*>**> allFormsByEditorID{ REL::ID(4796466) };
+			static REL::Relocation<BSReadWriteLock*>                      allFormsEditorIDMapLock{ REL::ID(4796477) };
 			return { *allFormsByEditorID, *allFormsEditorIDMapLock };
 		}
 
@@ -3563,7 +3563,7 @@ namespace fmt
 		}
 
 		template <class FormatContext>
-		auto format(const RE::ENUM_FORM_ID& a_formType, FormatContext& a_ctx)
+		auto format(const RE::ENUM_FORM_ID& a_formType, FormatContext& a_ctx) const
 		{
 			return fmt::format_to(a_ctx.out(), "{}", RE::TESForm::GetFormTypeString(a_formType));
 		}

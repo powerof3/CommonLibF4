@@ -27,7 +27,7 @@ namespace RE
 
 		[[nodiscard]] static BGSSynchronizedAnimationManager* GetSingleton()
 		{
-			static REL::Relocation<BGSSynchronizedAnimationManager**> singleton{ REL::ID(2690996) };
+			static REL::Relocation<BGSSynchronizedAnimationManager**> singleton{ REL::ID(4798289) };
 			return *singleton;
 		}
 

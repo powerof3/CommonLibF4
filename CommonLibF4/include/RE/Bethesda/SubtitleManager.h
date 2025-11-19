@@ -37,7 +37,7 @@ namespace RE
 	public:
 		[[nodiscard]] static SubtitleManager* GetSingleton()
 		{
-			static REL::Relocation<SubtitleManager**> singleton{ REL::ID(2689088) };
+			static REL::Relocation<SubtitleManager**> singleton{ REL::ID(4796374) };
 			return *singleton;
 		}
 

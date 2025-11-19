@@ -19,7 +19,7 @@ namespace RE
 	public:
 		[[nodiscard]] static BSIdleInputWatcher* GetSingleton()
 		{
-			static REL::Relocation<BSIdleInputWatcher**> singleton{ REL::ID(2693716) };
+			static REL::Relocation<BSIdleInputWatcher**> singleton{ REL::ID(4801008) };
 			return *singleton;
 		}
 

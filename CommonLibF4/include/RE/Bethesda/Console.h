@@ -11,7 +11,7 @@ namespace RE
 	public:
 		[[nodiscard]] static ConsoleLog* GetSingleton()
 		{
-			static REL::Relocation<ConsoleLog**> singleton{ REL::ID(2690148) };
+			static REL::Relocation<ConsoleLog**> singleton{ REL::ID(4797437) };
 			return *singleton;
 		}
 

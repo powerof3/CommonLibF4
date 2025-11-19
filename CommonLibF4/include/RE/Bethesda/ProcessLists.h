@@ -24,7 +24,7 @@ namespace RE
 
 		[[nodiscard]] static ProcessLists* GetSingleton()
 		{
-			static REL::Relocation<ProcessLists**> singleton{ REL::ID(2688869) };
+			static REL::Relocation<ProcessLists**> singleton{ REL::ID(4796160) };
 			return *singleton;
 		}
 

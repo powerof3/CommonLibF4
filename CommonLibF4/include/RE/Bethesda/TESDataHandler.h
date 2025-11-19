@@ -65,7 +65,7 @@ namespace RE
 	public:
 		[[nodiscard]] static TESDataHandler* GetSingleton()
 		{
-			static REL::Relocation<TESDataHandler**> singleton{ REL::ID(2688883) };
+			static REL::Relocation<TESDataHandler**> singleton{ REL::ID(4796135) };
 			return *singleton;
 		}
 

@@ -15,7 +15,7 @@ namespace RE
 	public:
 		[[nodiscard]] static BGSDynamicPersistenceManager* GetSingleton()
 		{
-			static REL::Relocation<BGSDynamicPersistenceManager**> singleton{ REL::ID(109630) };
+			static REL::Relocation<BGSDynamicPersistenceManager**> singleton{ REL::ID(4796312) };
 			return *singleton;
 		}
 

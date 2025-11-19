@@ -109,7 +109,7 @@ namespace RE
 
 		[[nodiscard]] static BSScaleformManager* GetSingleton()
 		{
-			static REL::Relocation<BSScaleformManager**> singleton{ REL::ID(2689600) };
+			static REL::Relocation<BSScaleformManager**> singleton{ REL::ID(4796889) };
 			return *singleton;
 		}
 

@@ -14,7 +14,7 @@ namespace RE
 	public:
 		[[nodiscard]] static UIMessageQueue* GetSingleton()
 		{
-			static REL::Relocation<UIMessageQueue**> singleton{ REL::ID(2689091) };
+			static REL::Relocation<UIMessageQueue**> singleton{ REL::ID(4796377) };
 			return *singleton;
 		}
 

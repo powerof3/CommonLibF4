@@ -74,7 +74,7 @@ namespace RE
 
 		[[nodiscard]] static UI* GetSingleton()
 		{
-			static REL::Relocation<UI**> singleton{ REL::ID(2689028) };
+			static REL::Relocation<UI**> singleton{ REL::ID(4796314) };
 			return *singleton;
 		}
 
@@ -154,18 +154,18 @@ namespace RE
 		std::uint32_t                          largeCacheRenderModeCount;   // 1FC
 		std::uint32_t                          movementToDirectionalCount;  // 200
 		BSTimer                                uiTimer;                     // 208
-		bool                                   menuSystemVisible;           // 248
-		bool                                   closingAllMenus;             // 249
-		bool                                   freezeFrameScreenshotReady;  // 24A
+		bool                                   menuSystemVisible;           // 258
+		bool                                   closingAllMenus;             // 259
+		bool                                   freezeFrameScreenshotReady;  // 25A
 	};
-	static_assert(sizeof(UI) == 0x250);
+	static_assert(sizeof(UI) == 0x260);
 
 	namespace UIUtils
 	{
 		inline void UpdateGamepadDependentButtonCodes(bool a_usingGamepad)
 		{
 			using func_t = decltype(&UpdateGamepadDependentButtonCodes);
-			static REL::Relocation<func_t> func{ REL::ID(190238) };
+			static REL::Relocation<func_t> func{ REL::ID(4483350) };
 			return func(a_usingGamepad);
 		}
 	}

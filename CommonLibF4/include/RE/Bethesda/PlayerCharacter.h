@@ -265,7 +265,7 @@ namespace RE
 
 		[[nodiscard]] static PlayerCharacter* GetSingleton()
 		{
-			static REL::Relocation<NiPointer<PlayerCharacter>*> singleton{ REL::ID(2690919) };
+			static REL::Relocation<NiPointer<PlayerCharacter>*> singleton{ REL::ID(4798212) };
 			return singleton->get();
 		}
 

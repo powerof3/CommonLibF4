@@ -181,7 +181,7 @@ namespace RE
 
 		[[nodiscard]] static FlatScreenModel* GetSingleton()
 		{
-			static REL::Relocation<FlatScreenModel**> singleton{ REL::ID(847741) };
+			static REL::Relocation<FlatScreenModel**> singleton{ REL::ID(4801718) };
 			return *singleton;
 		}
 
@@ -205,7 +205,7 @@ namespace RE
 
 		[[nodiscard]] static GameUIModel* GetSingleton()
 		{
-			static REL::Relocation<GameUIModel**> singleton{ REL::ID(17419) };
+			static REL::Relocation<GameUIModel**> singleton{ REL::ID(4802814) };
 			return *singleton;
 		}
 

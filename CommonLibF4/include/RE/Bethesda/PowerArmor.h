@@ -89,7 +89,7 @@ namespace RE
 
 		[[nodiscard]] static PowerArmorGeometry* GetSingleton()
 		{
-			static REL::Relocation<PowerArmorGeometry**> singleton{ REL::ID(1365745) };
+			static REL::Relocation<PowerArmorGeometry**> singleton{ REL::ID(4801732) };
 			return *singleton;
 		}
 

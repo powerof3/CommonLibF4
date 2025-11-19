@@ -572,7 +572,7 @@ namespace RE::Scaleform::GFx
 			bool GetMember(void* a_data, const char* a_name, Value* a_val, bool a_isdobj) const
 			{
 				using func_t = decltype(&ObjectInterface::GetMember);
-				static REL::Relocation<func_t> func{ REL::ID(2285936) };
+				static REL::Relocation<func_t> func{ REL::ID(4494126) };
 				return func(this, a_data, a_name, a_val, a_isdobj);
 			}
 

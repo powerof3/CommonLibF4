@@ -84,7 +84,7 @@ namespace RE
 	public:
 		[[nodiscard]] static ViewCaster* GetSingleton()
 		{
-			static REL::Relocation<ViewCaster**> singleton{ REL::ID(2690449) };
+			static REL::Relocation<ViewCaster**> singleton{ REL::ID(4797738) };
 			return *singleton;
 		}
 

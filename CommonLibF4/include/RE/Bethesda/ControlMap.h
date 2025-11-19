@@ -62,7 +62,7 @@ namespace RE
 
 		[[nodiscard]] static ControlMap* GetSingleton()
 		{
-			static REL::Relocation<ControlMap**> singleton{ REL::ID(2692014) };
+			static REL::Relocation<ControlMap**> singleton{ REL::ID(4799307) };
 			return *singleton;
 		}
 

@@ -17,7 +17,7 @@ namespace RE
 	public:
 		[[nodiscard]] static BGSStoryEventManager* GetSingleton()
 		{
-			static REL::Relocation<BGSStoryEventManager**> singleton{ REL::ID(2693504) };
+			static REL::Relocation<BGSStoryEventManager**> singleton{ REL::ID(4800796) };
 			return *singleton;
 		}
 

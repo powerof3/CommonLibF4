@@ -759,6 +759,13 @@ namespace RE
 			return func(this);
 		}
 
+		[[nodiscard]] BGSEncounterZone* GetEncounterZone() const
+		{
+			using func_t = decltype(&TESObjectREFR::GetEncounterZone);
+			static REL::Relocation<func_t> func{ REL::ID(2202627) };
+			return func(this);
+		}
+
 		[[nodiscard]] TESBoundObject* GetObjectReference() const noexcept { return data.objectReference; }
 
 		[[nodiscard]] TESForm* GetOwner()

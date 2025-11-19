@@ -88,7 +88,7 @@ namespace RE
 	public:
 		[[nodiscard]] static MessageMenuManager* GetSingleton()
 		{
-			static REL::Relocation<MessageMenuManager**> singleton{ REL::ID(959572) };
+			static REL::Relocation<MessageMenuManager**> singleton{ REL::ID(4796373) };
 			return *singleton;
 		}
 

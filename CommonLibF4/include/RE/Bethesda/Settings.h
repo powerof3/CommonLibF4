@@ -345,7 +345,7 @@ namespace RE
 
 		[[nodiscard]] static GameSettingCollection* GetSingleton()
 		{
-			static REL::Relocation<GameSettingCollection**> singleton{ REL::ID(2690301) };
+			static REL::Relocation<GameSettingCollection**> singleton{ REL::ID(4797590) };
 			return *singleton;
 		}
 

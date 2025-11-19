@@ -42,7 +42,7 @@ namespace RE
 
 		[[nodiscard]] static FavoritesManager* GetSingleton()
 		{
-			static REL::Relocation<FavoritesManager**> singleton{ REL::ID(198281) };
+			static REL::Relocation<FavoritesManager**> singleton{ REL::ID(4801690) };
 			return *singleton;
 		}
 

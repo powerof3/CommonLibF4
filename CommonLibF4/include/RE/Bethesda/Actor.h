@@ -1674,7 +1674,7 @@ namespace RE
 	public:
 		[[nodiscard]] static ActorEquipManager* GetSingleton()
 		{
-			static REL::Relocation<ActorEquipManager**> singleton{ REL::ID(2690994) };
+			static REL::Relocation<ActorEquipManager**> singleton{ REL::ID(4798287) };
 			return *singleton;
 		}
 
