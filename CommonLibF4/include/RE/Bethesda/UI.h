@@ -109,7 +109,7 @@ namespace RE
 		void RefreshCursor()
 		{
 			using func_t = decltype(&UI::RefreshCursor);
-			static REL::Relocation<func_t> func{ REL::ID(1436639) };
+			static REL::Relocation<func_t> func{ REL::ID(2284772) };
 			return func(this);
 		}
 

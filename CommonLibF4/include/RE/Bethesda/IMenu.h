@@ -187,9 +187,29 @@ namespace RE
 
 		// members
 		BSFixedString customRendererName;  // 10
-		void*         model;               // 18 - TODO
+		ModelDBHandle model;               // 18
 	};
 	static_assert(sizeof(FlatScreenModel) == 0x20);
+
+	class __declspec(novtable) HUDScreenModel :
+		public BSTEventSink<UIAdvanceMenusFunctionCompleteEvent>,  // 00
+		public BSTSingletonSDM<HUDScreenModel>                     // 08
+	{
+	public:
+		static constexpr auto RTTI{ RTTI::HUDScreenModel };
+		static constexpr auto VTABLE{ VTABLE::HUDScreenModel };
+
+		[[nodiscard]] static HUDScreenModel* GetSingleton()
+		{
+			static REL::Relocation<HUDScreenModel**> singleton{ REL::ID(4801730) };
+			return *singleton;
+		}
+
+		// members
+		BSFixedString customRendererName;  // 10
+		ModelDBHandle model;               // 18
+	};
+	static_assert(sizeof(HUDScreenModel) == 0x20);
 
 	class __declspec(novtable) GameUIModel :
 		public BSTSingletonSDM<GameUIModel>,
@@ -413,6 +433,11 @@ namespace RE
 		HUDModeType(const char* a_modeString) :
 			modeString(a_modeString)
 		{}
+
+		bool operator==(const HUDModeType& a_rhs) const
+		{
+			return modeString == a_rhs.modeString;
+		}
 
 		// members
 		BSFixedString modeString;  // 0
@@ -1772,7 +1797,7 @@ namespace RE
 			{
 				BGSMod::Attachment::Mod* mod;
 				TESBoundObject*          object;
-			};                                                                              // 00
+			};  // 00
 			const BGSConstructibleObject*                                   recipe;         // 08
 			BSTArray<BSTTuple<TESForm*, BGSTypedFormValuePair::SharedVal>>* requiredItems;  // 10
 			BSTArray<BSTTuple<BGSPerk*, std::uint32_t>>                     requiredPerks;  // 18
@@ -2284,18 +2309,31 @@ namespace RE
 		virtual UI_MESSAGE_RESULTS ProcessMessage(UIMessage& a_message) override;                                              // 03
 		virtual void               OnMenuStackChanged(const BSFixedString& a_topMenuName, bool a_passesTopMenuTest) override;  // 09
 
-		static void OnEnterFurniture(ObjectRefHandle a_handle)
+		[[nodiscard]] static decltype(auto) GetFurnitureRef()
+		{
+			static REL::Relocation<ObjectRefHandle*> ref{ REL::ID(2701692) };
+			return *ref;
+		}
+
+		static void OnEnterFurniture(const ObjectRefHandle& a_handle)
 		{
 			using func_t = decltype(&SitWaitMenu::OnEnterFurniture);
-			static REL::Relocation<func_t> func{ REL::ID(562238) };
+			static REL::Relocation<func_t> func{ REL::ID(2249503) };
 			return func(a_handle);
 		}
 
 		static void OnExitFurniture()
 		{
 			using func_t = decltype(&SitWaitMenu::OnExitFurniture);
-			static REL::Relocation<func_t> func{ REL::ID(454795) };
+			static REL::Relocation<func_t> func{ REL::ID(2249504) };
 			return func();
+		}
+
+		static void ToggleOpenSleepWaitMenu(const ObjectRefHandle& a_furnitureRef, bool a_sleeping)
+		{
+			using func_t = decltype(&SitWaitMenu::ToggleOpenSleepWaitMenu);
+			static REL::Relocation<func_t> func{ REL::ID(2249519) };
+			func(a_furnitureRef, a_sleeping);
 		}
 
 		// members

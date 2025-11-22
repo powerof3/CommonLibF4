@@ -15,7 +15,7 @@ namespace RE
 
 		[[nodiscard]] static MenuCursor* GetSingleton()
 		{
-			static REL::Relocation<MenuCursor**> singleton{ REL::ID(2696546) };
+			static REL::Relocation<MenuCursor**> singleton{ REL::ID(4803837) };
 			return *singleton;
 		}
 
