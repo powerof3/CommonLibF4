@@ -1797,7 +1797,7 @@ namespace RE
 			{
 				BGSMod::Attachment::Mod* mod;
 				TESBoundObject*          object;
-			};  // 00
+			};                                                                              // 00
 			const BGSConstructibleObject*                                   recipe;         // 08
 			BSTArray<BSTTuple<TESForm*, BGSTypedFormValuePair::SharedVal>>* requiredItems;  // 10
 			BSTArray<BSTTuple<BGSPerk*, std::uint32_t>>                     requiredPerks;  // 18
