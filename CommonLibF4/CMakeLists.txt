@@ -13,8 +13,6 @@ if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
 	message(FATAL_ERROR "in-source builds are not allowed")
 endif()
 
-find_package(Boost MODULE REQUIRED)
-find_package(fmt REQUIRED CONFIG)
 find_package(mmio REQUIRED CONFIG)
 find_package(spdlog REQUIRED CONFIG)
 
@@ -38,7 +36,6 @@ add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
 target_compile_definitions(
 	"${PROJECT_NAME}"
 	PUBLIC
-		BOOST_STL_INTERFACES_DISABLE_CONCEPTS
 		WINVER=0x0601	# windows 7, minimum supported version by fallout 4
 		_WIN32_WINNT=0x0601
 		"$<$<BOOL:${F4SE_SUPPORT_XBYAK}>:F4SE_SUPPORT_XBYAK=1>"
@@ -47,7 +44,7 @@ target_compile_definitions(
 target_compile_features(
 	"${PROJECT_NAME}"
 	PUBLIC
-		cxx_std_20
+		cxx_std_23
 )
 
 if (MSVC)
@@ -73,6 +70,7 @@ if (MSVC)
 			/wd4625 # 'derived class' : copy constructor was implicitly defined as deleted because a base class copy constructor is inaccessible or deleted
 			/wd4626 # 'derived class' : assignment operator was implicitly defined as deleted because a base class assignment operator is inaccessible or deleted
 			/wd4686 # 'user-defined type' : possible change in behavior, change in UDT return calling convention
+			/wd4702 # unreachable code
 			/wd4710 # 'function' : function not inlined
 			/wd4711 # function 'function' selected for inline expansion
 			/wd4820 # 'bytes' bytes padding added after construct 'member_name'
@@ -95,10 +93,18 @@ target_include_directories(
 target_link_libraries(
 	"${PROJECT_NAME}"
 	PUBLIC
-		Boost::headers
-		fmt::fmt
+		Advapi32.lib
+		bcrypt.lib
+		D3D11.lib
+		d3dcompiler.lib
+		Dbghelp.lib
+		DXGI.lib
 		mmio::mmio
+		Ole32.lib
+		shell32.lib
 		spdlog::spdlog
+		User32.lib
+        Ws2_32.lib
 		Version.lib
 )
 

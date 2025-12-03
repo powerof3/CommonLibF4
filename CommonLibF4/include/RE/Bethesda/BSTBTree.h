@@ -45,31 +45,21 @@ namespace RE
 
 	private:
 		template <class U>
-		class iterator_base :
-			public boost::stl_interfaces::iterator_interface<
-				iterator_base<U>,
-				std::forward_iterator_tag,
-				U>
+		class iterator_base
 		{
-		private:
-			using super =
-				boost::stl_interfaces::iterator_interface<
-					iterator_base<U>,
-					std::forward_iterator_tag,
-					U>;
-
 		public:
-			using difference_type = typename super::difference_type;
-			using value_type = typename super::value_type;
-			using pointer = typename super::pointer;
-			using reference = typename super::reference;
-			using iterator_category = typename super::iterator_category;
+			using difference_type = std::ptrdiff_t;
+			using value_type = std::remove_const_t<U>;
+			using pointer = value_type*;
+			using reference = value_type&;
+			using iterator_category = std::forward_iterator_tag;
 
 			iterator_base() noexcept = default;
 
 			template <class V>
 			iterator_base(const iterator_base<V>& a_rhs)  //
-				requires(std::convertible_to<typename iterator_base<V>::reference, reference>) :
+				requires(std::convertible_to<typename iterator_base<V>::reference, reference>)
+				:
 				_queued(a_rhs._queued),
 				_cur(a_rhs._cur),
 				_pos(a_rhs._pos)
@@ -77,7 +67,8 @@ namespace RE
 
 			template <class V>
 			iterator_base(iterator_base<V>&& a_rhs) noexcept  //
-				requires(std::convertible_to<typename iterator_base<V>::reference, reference>) :
+				requires(std::convertible_to<typename iterator_base<V>::reference, reference>)
+				:
 				_queued(std::move(a_rhs._queued)),
 				_cur(std::exchange(a_rhs._cur, nullptr)),
 				_pos(std::exchange(a_rhs._pos, 0))
@@ -116,15 +107,24 @@ namespace RE
 				return _cur->entries[_pos];
 			}
 
+			[[nodiscard]] pointer operator->() const noexcept
+			{
+				return std::pointer_traits<pointer>::pointer_to(operator*());
+			}
+
 			template <class V>
 			[[nodiscard]] bool operator==(const iterator_base<V>& a_rhs) const noexcept
 			{
 				return _cur == nullptr && a_rhs._cur == nullptr;
 			}
 
-			using super::operator++;
+			template <class V>
+			[[nodiscard]] bool operator!=(const iterator_base<V>& a_rhs) const noexcept
+			{
+				return !operator==(a_rhs);
+			}
 
-			void operator++() noexcept
+			iterator_base& operator++() noexcept
 			{
 				assert(_cur != nullptr);
 				if (++_pos >= _cur->usedEntries) {
@@ -136,6 +136,15 @@ namespace RE
 						push_level();
 					}
 				}
+
+				return *this;
+			}
+
+			iterator_base operator++(int) noexcept
+			{
+				iterator_base tmp{ *this };
+				operator++();
+				return tmp;
 			}
 
 		protected:
