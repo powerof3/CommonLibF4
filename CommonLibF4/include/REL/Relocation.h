@@ -575,7 +575,9 @@ namespace REL
 					return a_lhs.id < a_rhs.id;
 				});
 			if (it == _id2offset.end()) {
-				stl::report_and_fail("id not found"sv);
+				const auto version = Module::get().version();
+				const auto str = std::format("id {} not found!\ngame version: {}"sv, a_id, version.string());
+				stl::report_and_fail(str);
 			}
 
 			return static_cast<std::size_t>(it->offset);
