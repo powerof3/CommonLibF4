@@ -201,6 +201,13 @@ namespace RE
 
 		~BSTempEffectWeaponBlood() override;
 
+		static void ClearEffectForWeapon(NiAVObject* a_weapon3D)
+		{
+			using func_t = decltype(&BSTempEffectWeaponBlood::ClearEffectForWeapon);
+			REL::Relocation<func_t> func{ REL::ID(2212158) };
+			return func(a_weapon3D);
+		}
+
 		// members
 		NiPointer<NiAVObject> weapon;        // 30
 		float                 fBloodAmount;  // 38
