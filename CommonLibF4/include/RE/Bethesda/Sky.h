@@ -85,6 +85,18 @@ namespace RE
 			return func(this, a_weather, a_override);
 		}
 
+		bool IsRaining() const
+		{
+			bool result = true;
+			if (currentWeather && (currentWeather->weatherData[11] & 4) != 0 && ((currentWeather->weatherData[6] * 0.0039215689f) * 0.99900001f) < currentWeatherPct) {
+				return result;
+			}
+			if (!lastWeather || (lastWeather->weatherData[11] & 4) == 0 || (((lastWeather->weatherData[7] * 0.0039215689f) * 0.99900001f) + 0.001f) <= currentWeatherPct) {
+				return false;
+			}
+			return result;
+		}
+
 		void ReleaseWeatherOverride()
 		{
 			if (overrideWeather) {

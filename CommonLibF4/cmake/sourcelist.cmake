@@ -308,6 +308,7 @@ set(SOURCES
 	include/RE/Havok/hknpWorld.h
 	include/RE/Havok/hknpWorldCinfo.h
 	include/RE/Havok/hknpWorldSignals.h
+	include/RE/NetImmerse/BGSDecalNode.h
 	include/RE/NetImmerse/NiAVObject.h
 	include/RE/NetImmerse/NiAlphaProperty.h
 	include/RE/NetImmerse/NiBinaryStream.h
