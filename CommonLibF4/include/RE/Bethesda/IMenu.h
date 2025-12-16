@@ -1797,7 +1797,7 @@ namespace RE
 			{
 				BGSMod::Attachment::Mod* mod;
 				TESBoundObject*          object;
-			};                                                                              // 00
+			};  // 00
 			const BGSConstructibleObject*                                   recipe;         // 08
 			BSTArray<BSTTuple<TESForm*, BGSTypedFormValuePair::SharedVal>>* requiredItems;  // 10
 			BSTArray<BSTTuple<BGSPerk*, std::uint32_t>>                     requiredPerks;  // 18
@@ -2265,6 +2265,43 @@ namespace RE
 		bool                  VATSDepthTestMask;        // 1B7
 	};
 	static_assert(sizeof(LockpickingMenu) == 0x1C0);
+
+	class __declspec(novtable) MainMenu :
+		public StartMenuBase,                    // 000
+		public BSTEventSink<MenuOpenCloseEvent>  // 228
+	{
+	public:
+		static constexpr auto RTTI{ RTTI::MainMenu };
+		static constexpr auto VTABLE{ VTABLE::MainMenu };
+		static constexpr auto MENU_NAME{ "MainMenu"sv };
+
+		enum class MAIN_MENU_EXIT_CONDITION
+		{
+			kNoExit = 0,
+			kNewGame = 1,
+			kContinue = 2,
+			kLoadGame = 3
+		};
+
+		// members
+		MAIN_MENU_EXIT_CONDITION   mainMenuExitCondition;        // 230
+		BSTSet<std::uint32_t>      ownedDLC;                     // 238
+		std::uint64_t              creationTime;                 // 268
+		std::int32_t               queuedLoadIndex;              // 270
+		bool                       choseContinue;                // 274
+		bool                       queueStartNewGame;            // 275
+		bool                       queueContinueGame;            // 276
+		bool                       creditScreen;                 // 277
+		bool                       userEngaged;                  // 278
+		bool                       mainBinkShown;                // 279
+		bool                       allowSkip;                    // 27A
+		bool                       debounceMainListPress;        // 27B
+		bool                       nativeConsolePanelIsOpen;     // 27C
+		bool                       shouldDebounceMainListPress;  // 27D
+		BSScaleformExternalTexture gamerIconTexture;             // 280
+		BSScaleformExternalTexture DLCImageTextures[14];         // 298
+	};
+	static_assert(sizeof(MainMenu) == 0x3E8);
 
 	class __declspec(novtable) PauseMenu :
 		public StartMenuBase  // 00

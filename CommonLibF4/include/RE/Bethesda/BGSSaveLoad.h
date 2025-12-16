@@ -13,9 +13,35 @@ namespace RE
 	}
 
 	class BGSSaveLoadFile;
-	class BGSSaveLoadFileEntry;
 	class BSEventFlag;
 	class BSSaveDataSystemUtilityFile;
+
+	class BGSSaveLoadFileEntry
+	{
+	public:
+		// members
+		const char*        fileName;          // 00
+		const char*        playerName;        // 08
+		const char*        playerTitle;       // 10
+		const char*        location;          // 18
+		const char*        playTime;          // 20
+		const char*        raceName;          // 28
+		std::int32_t       version;           // 30
+		std::uint32_t      saveGameNumber;    // 34
+		std::uint32_t      playerLevel;       // 38
+		float              levelProgress;     // 3C
+		float              levelThreshold;    // 40
+		std::uint32_t      screenshotWidth;   // 44
+		std::uint32_t      screenshotHeight;  // 48
+		std::uint32_t      screenshotOffset;  // 4C
+		REX::W32::FILETIME fileTime;          // 50
+		REX::W32::FILETIME saveTime;          // 58
+		std::int32_t       deviceID;          // 60
+		bool               loaded;            // 64
+		bool               corrupt;           // 65
+		bool               needsSync;         // 66
+	};
+	static_assert(sizeof(BGSSaveLoadFileEntry) == 0x68);
 
 	struct BGSNumericIDIndex
 	{
@@ -53,7 +79,7 @@ namespace RE
 				{
 					std::uint8_t                      data1;
 					REX::EnumSet<Flags, std::uint8_t> flags;
-				};                   // 0
+				};  // 0
 				std::uint8_t data2;  // 1
 				std::uint8_t data3;  // 2
 			};
@@ -145,6 +171,20 @@ namespace RE
 			using func_t = decltype(&BGSSaveLoadManager::QueueSaveLoadTask);
 			static REL::Relocation<func_t> func{ REL::ID(2228080) };
 			return func(this, a_task);
+		}
+
+		bool LoadGame(const char* a_fileName, std::int32_t a_deviceID, std::uint32_t a_outputStats, bool a_checkForMods, bool a_ignoreMissingContent)
+		{
+			using func_t = decltype(&BGSSaveLoadManager::LoadGame);
+			static REL::Relocation<func_t> func{ REL::ID(2228039) };
+			return func(this, a_fileName, a_deviceID, a_outputStats, a_checkForMods, a_ignoreMissingContent);
+		}
+
+		void BuildSaveGameList(std::uint64_t a_playerID)
+		{
+			using func_t = decltype(&BGSSaveLoadManager::BuildSaveGameList);
+			static REL::Relocation<func_t> func{ REL::ID(2228053) };
+			return func(this, a_playerID);
 		}
 
 		// members
